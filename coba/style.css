@@ -1,0 +1,207 @@
+/* Reset & Font */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    /* Background halaman: Biru di kiri, Abu-abu di kanan (miring) */
+    background: linear-gradient(105deg, #0047FF 50%, #e0e0e0 50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Container Utama */
+.container {
+    background-color: white;
+    width: 950px; /* Lebar sedikit ditambah agar proporsional */
+    height: 550px;
+    display: flex;
+    border-radius: 20px;
+    overflow: hidden; /* Wajib agar sudut rounded tidak bocor */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+/* --- BAGIAN KIRI (BIRU & GAMBAR) --- */
+.left-section {
+    position: relative;
+    width: 55%; /* Lebar 55% */
+    background-color: #0047FF; /* Warna dasar biru */
+
+    /* LOGIKA MIRING (CLIP-PATH) */
+    /* Memotong sisi kanan bawah agar miring masuk ke dalam */
+    clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+}
+
+/* Gambar Background (Sesuai request pakai tag <img>) */
+.bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Agar gambar memenuhi area tanpa gepeng */
+    opacity: 0.6; /* Opsional: Biar teks lebih terbaca */
+    mix-blend-mode: multiply; /* Agar menyatu dengan warna biru */
+}
+
+/* Overlay Konten di atas Gambar */
+.overlay-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Jarak atas, tengah, bawah */
+    color: white;
+    z-index: 2; /* Di atas gambar */
+}
+
+/* Navigasi Atas (Daftar / Masuk) */
+.top-nav {
+    display: flex;
+    gap: 15px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: white;
+    padding: 8px 25px;
+    border-radius: 20px;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.nav-link.active {
+    border: 1px solid white;
+    font-weight: 600;
+}
+
+/* Teks Tengah */
+.hero-text h2 {
+    font-size: 28px;
+    line-height: 1.4;
+    max-width: 80%; /* Agar tidak menabrak sisi miring */
+}
+
+/* Logo Bawah */
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.logo-area img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: white; /* Placeholder background logo */
+}
+
+/* --- BAGIAN KANAN (FORM PUTIH) --- */
+.right-section {
+    flex: 1; /* Mengisi sisa ruang */
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-header h1 {
+    font-family: 'Georgia', serif; /* Font Serif sesuai foto */
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.form-header p {
+    color: #777;
+    font-size: 14px;
+}
+
+/* Input Styles (Kembali ke Kotak/Box) */
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.input-group input:focus {
+    border-color: #869F56; /* Fokus warna hijau olive */
+}
+
+.input-group i {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    cursor: pointer;
+}
+
+/* Checkbox & Forgot Password */
+.options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.options a {
+    color: #d9534f; /* Merah bata untuk lupa password */
+    text-decoration: none;
+}
+
+/* Tombol Submit Hijau Olive */
+.btn-submit {
+    width: 100%;
+    padding: 12px;
+    background-color: #869F56;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-submit:hover {
+    background-color: #728a46;
+}
+
+.footer-text {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 13px;
+    color: #666;
+}
+
+.footer-text a {
+    color: #869F56;
+    text-decoration: none;
+    font-weight: bold;
+}
