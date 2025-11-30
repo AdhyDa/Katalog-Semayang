@@ -22,8 +22,10 @@
     <nav class="navbar">
         <div class="container">
             <div class="nav-brand">
-                <img src="{{ asset('images/logo.png') }}" alt="Logo AMKT Semayang" class="logo-img">
-                <h2>AMKT Semayang</h2>
+                <a href="{{ route('home') }}" class="logo">
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo AMKT Semayang" class="logo-img">
+                    <h2>AMKT Semayang</h2>
+                </a>
             </div>
             <ul class="nav-menu">
                 <li><a href="{{ route('home') }}" class="{{ Request::is('/') ? 'active' : '' }}">Beranda</a></li>
@@ -34,15 +36,37 @@
             <div class="nav-buttons">
                 <a href="{{ route('katalog') }}" class="btn-cart">
 
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="cart-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="8" cy="21" r="1"/>
                         <circle cx="19" cy="21" r="1"/>
                         <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
                     </svg>
 
                 </a>
-                <a href="{{ route('login') }}" class="btn btn-outline-nav">Masuk</a>
-                <a href="{{ route('daftar') }}" class="btn btn-primary-nav">Daftar</a>
+
+                @auth
+                    <div class="user-dropdown">
+                        <button class="user-btn">
+                            <span>{{ explode(' ', Auth::user()->name)[0] }}</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="#" class="dropdown-item">Profil Saya</a>
+                            <a href="#" class="dropdown-item">Pesanan Saya</a>
+                            <hr class="dropdown-divider">
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="dropdown-item logout-btn">Logout</button>
+                            </form>
+                        </div>
+                    </div>
+                @else
+                    <a href="{{ route('login') }}" class="btn btn-outline-nav">Login</a>
+                    <a href="{{ route('daftar') }}" class="btn btn-primary-nav">Daftar</a>
+                @endauth
             </div>
         </div>
     </nav>

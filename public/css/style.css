@@ -19,14 +19,15 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    padding-top: 5px;
 }
 
 .navbar {
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    padding: 15px 0;
     position: sticky;
     top: 0;
     z-index: 1000;
+    transition: all 0.4s ease;
 }
 
 .navbar-scrolled {
@@ -40,6 +41,7 @@ body {
 
 .navbar-scrolled .nav-menu a {
     color: white;
+    text-decoration: none;
 }
 
 .navbar-scrolled .nav-menu a:hover,
@@ -75,6 +77,14 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
+}
+
+.nav-brand a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
 }
 
 .logo-img {
@@ -135,16 +145,103 @@ body {
     background-color: rgba(126, 154, 62, 1);
 }
 
-.cart-icon {
+.btn-cart svg {
     color: rgb(255, 255, 255);
     width: 24px;
     height: 24px;
 }
 
-.cart-icon:hover{
+.btn-cart:hover svg{
     color: #f6e922;
+}
+
+/* User Dropdown */
+.user-dropdown {
+    position: relative;
+}
+
+.user-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 15px;
+    background-color: transparent;
+    border: 2px solid var(--border-color);
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+}
+
+.user-btn:hover {
+    border-color: #B8D46F;
+    background-color: rgba(126, 154, 62, 1);
+}
+
+.user-btn svg {
     width: 24px;
     height: 24px;
+}
+
+.user-btn:hover span,
+.user-btn:hover svg {
+    color: #f6e922;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    min-width: 200px;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s;
+    z-index: 1000;
+}
+
+.user-dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-item {
+    display: block;
+    padding: 12px 20px;
+    color: var(--text-dark);
+    text-decoration: none;
+    transition: background-color 0.3s;
+    font-size: 14px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.dropdown-item:hover {
+    background-color: rgba(184, 212, 111, 0.1);
+}
+
+.dropdown-divider {
+    margin: 5px 0;
+    border: none;
+    border-top: 1px solid var(--border-color);
+}
+
+.logout-btn {
+    color: #DC3545;
+}
+
+.logout-btn:hover {
+    background-color: rgba(220, 53, 69, 0.1);
 }
 
 .btn-outline-nav {
@@ -439,6 +536,10 @@ body {
 .cara-sewa-section {
     padding: 0;
     background-color: var(--bg-white);
+}
+
+.cara-sewa-section a {
+    text-decoration: none;
 }
 
 .image-cara-sewa {
@@ -1333,6 +1434,10 @@ body {
 .filter-tabs {
     display: flex;
     gap: 12px;
+}
+
+.filter-tabs a {
+    text-decoration: none;
 }
 
 .tab-btn {
@@ -2416,6 +2521,51 @@ body {
     color: white;
 }
 
+.auth-left-content {
+    max-width: 600px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.hero-text {
+    margin-bottom: 40px;
+}
+
+.hero-text h1 {
+    color: white;
+    font-size: 36px;
+    line-height: 1.4;
+    font-weight: bold;
+}
+
+.brand-footer-forgot {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 50px;
+}
+
+/* Form Header */
+.form-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.form-header h2 {
+    font-size: 32px;
+    color: #2C1810;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.form-header p {
+    font-size: 16px;
+    color: #666;
+}
+
 /* Tabs Navigation */
 .auth-tabs {
     display: flex;
@@ -2563,20 +2713,22 @@ body {
     position: absolute;
     right: 0;
     top: 10px;
+    transform: translateY(-50%);
+    color: #666;
     background: none;
+    transition: color 0.3s;
     border: none;
     cursor: pointer;
-    color: #666;
-    transition: color 0.3s;
     width: 24px;
     height: 24px;
     padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .toggle-password svg {
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: static;
     width: 20px;
     height: 20px;
 }
@@ -2588,22 +2740,18 @@ body {
 
 .eye-icon-open {
     display: block;
-    visibility: visible;
 }
 
 .eye-icon-off {
     display: none;
-    visibility: hidden;
 }
 
 .toggle-password.active .eye-icon-open {
     display: none;
-    visibility: hidden;
 }
 
 .toggle-password.active .eye-icon-off {
     display: inline;
-    visibility: visible;
 }
 
 /* Form Options */
@@ -2697,4 +2845,95 @@ body {
 
 .alert-error ul {
     list-style: none;
+}
+
+/* Auth Footer */
+.auth-footer {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.auth-footer p {
+    color: #666;
+    font-size: 15px;
+}
+
+.auth-footer a {
+    color: #8FA957;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Back Link */
+.back-link {
+    margin-bottom: 40px;
+}
+
+.back-link a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 8px 15px;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.back-link a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.back-link svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .auth-container {
+        grid-template-columns: 1fr;
+    }
+
+    .auth-left {
+        display: none;
+    }
+
+    .auth-right {
+        padding: 20px;
+    }
+
+    .auth-form-wrapper {
+        padding: 40px 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-header h2 {
+        font-size: 26px;
+    }
+
+    .auth-form-wrapper {
+        padding: 30px 20px;
+    }
+
+    .form-control {
+        padding: 15px;
+    }
+
+    .btn-submit {
+        padding: 15px;
+    }
+
+    .form-options {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
 }
