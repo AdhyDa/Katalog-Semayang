@@ -135,6 +135,38 @@ class KatalogController extends Controller
         ];
     }
 
+    public function show($id)
+    {
+        // Find product by id from the products array
+        $allProducts = $this->getAllProducts();
+        $product = null;
+
+        foreach ($allProducts as $p) {
+            if ($p['id'] == $id) {
+                $product = $p;
+                break;
+            }
+        }
+
+        if (!$product) {
+            abort(404);
+        }
+
+        // Add additional details for the product detail view
+        $product['duration'] = '3 hari';
+        $product['description'] = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
+        $product['size'] = 'All Size (Uk. S sampai XXL)';
+        $product['package'] = 'Paket sudah termasuk: Topi bulu, rompi manik, dan rok rumbai.';
+        $product['images'] = [
+            $product['image'],
+            $product['image'], // Placeholder for additional images
+            $product['image'],
+            $product['image'],
+        ];
+
+        return view('product-detail', compact('product'));
+    }
+
     private function getProductsByKategori($kategori)
     {
         $allProducts = $this->getAllProducts();

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'AMKT Semayang - Sewa Baju Adat Kaltim')</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
@@ -34,16 +35,23 @@
                 <li><a href="{{ route('tentang') }}" class="{{ Request::is('tentang') ? 'active' : '' }}">Tentang Kami</a></li>
             </ul>
             <div class="nav-buttons">
-                <a href="{{ route('katalog') }}" class="btn-cart">
+                <a href="{{ route('cart') }}" class="btn-cart">
 
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="8" cy="21" r="1"/>
                         <circle cx="19" cy="21" r="1"/>
                         <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
                     </svg>
-
+                    @php
+                        $cart = Session::get('cart', []);
+                        $cartCount = array_sum(array_column($cart, 'quantity'));
+                    @endphp
+                    @if($cartCount > 0)
+                        <span class="cart-badge">{{ $cartCount }}</span>
+                    @endif
                 </a>
-
+            </div>
+            <div class="nav-buttons-auth">
                 @auth
                     <div class="user-dropdown">
                         <button class="user-btn">

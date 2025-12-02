@@ -6,22 +6,31 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Str;
 use App\Models\User;
 
 class AuthController extends Controller
 {
-    public function showLogin()
+    public function showLogin(Request $request)
     {
+        if ($request->has('redirect')) {
+            Session::put('url.intended', route($request->redirect));
+        }
+
         if (Auth::check()) {
             return redirect()->route('home');
         }
         return view('auth.login');
     }
 
-    public function showRegister()
+    public function showRegister(Request $request)
     {
+        if ($request->has('redirect')) {
+            Session::put('url.intended', route($request->redirect));
+        }
+
         if (Auth::check()) {
             return redirect()->route('home');
         }
@@ -54,7 +63,7 @@ class AuthController extends Controller
         ]);
 
         Auth::login($user);
-        return redirect()->route('login')->with('success', 'Registrasi berhasil! Selamat datang.');
+        return redirect()->intended(route('home'))->with('success', 'Registrasi berhasil! Selamat datang.');
     }
 
     public function login(Request $request)
@@ -68,17 +77,20 @@ class AuthController extends Controller
             'password.required' => 'Password harus diisi',
         ]);
 
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
         $remember = $request->has('remember');
 
-        if (Auth::attempt($credentials, $remember)) {
+        if (Auth::attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
             return redirect()->intended(route('home'))->with('success', 'Selamat datang kembali!');
         }
 
         return back()->withErrors([
             'email' => 'Email atau password salah.',
-        ])->withInput($request->only('email'));
+        ])->onlyInput('email');
     }
 
     public function logout(Request $request)
