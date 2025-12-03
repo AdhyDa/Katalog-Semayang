@@ -23,10 +23,11 @@ Route::put('/cart/update/{id}', [CartController::class, 'update'])->name('cart.u
 Route::delete('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
 Route::delete('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
 
-// Checkout Routes
-Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
-Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
-Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
+Route::middleware('auth')->group(function () {
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+    Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
+    Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
+});
 
 // Authentication Routes
 Route::middleware('guest')->group(function () {
@@ -35,7 +36,6 @@ Route::middleware('guest')->group(function () {
     Route::get('/daftar', [AuthController::class, 'showRegister'])->name('daftar');
     Route::post('/daftar', [AuthController::class, 'register'])->name('daftar');
 });
-
 
 // Password Reset Routes
 Route::get('/forgot-password', [AuthController::class, 'showForgotPassword'])->name('password.request');

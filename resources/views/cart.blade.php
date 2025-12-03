@@ -6,7 +6,7 @@
 
 <div class="hero-overlay-cart"></div>
 <div class="breadcrumb">
-    <a href=""{{ route('home') }}"">Beranda</a> &gt; Keranjang
+    <a href="{{ route('home') }}">Beranda</a> &gt; Keranjang
 </div>
 
 <section class="cart-section">
@@ -100,7 +100,21 @@
 </form>
 @endforeach
 
+<!-- Custom Confirmation Modal -->
+<div id="confirm-modal" class="modal">
+    <div class="modal-content">
+        <h3>Konfirmasi Hapus Item</h3>
+        <p>Apakah Anda yakin ingin menghapus item ini dari keranjang?</p>
+        <div class="modal-actions">
+            <button id="confirm-yes" class="btn btn-danger">Ya</button>
+            <button id="confirm-no" class="btn btn-secondary">Tidak</button>
+        </div>
+    </div>
+</div>
+
 <script>
+let currentRemoveId = null;
+
 function updateQuantity(id, change) {
     const qtyInput = document.getElementById('qty-' + id);
     let currentQty = parseInt(qtyInput.value);
@@ -153,9 +167,28 @@ function updateTotal() {
 }
 
 function removeItem(id) {
-    if (confirm('Apakah Anda yakin ingin menghapus item ini dari keranjang?')) {
-        document.getElementById('remove-form-' + id).submit();
-    }
+    currentRemoveId = id;
+    document.getElementById('confirm-modal').style.display = 'block';
 }
+
+document.getElementById('confirm-yes').addEventListener('click', function() {
+    if (currentRemoveId !== null) {
+        document.getElementById('remove-form-' + currentRemoveId).submit();
+    }
+});
+
+document.getElementById('confirm-no').addEventListener('click', function() {
+    document.getElementById('confirm-modal').style.display = 'none';
+    currentRemoveId = null;
+});
+
+// Close modal when clicking outside
+window.addEventListener('click', function(event) {
+    const modal = document.getElementById('confirm-modal');
+    if (event.target === modal) {
+        modal.style.display = 'none';
+        currentRemoveId = null;
+    }
+});
 </script>
 @endsection

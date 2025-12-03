@@ -27,18 +27,20 @@ class CartController extends Controller
             'price' => 'required|numeric',
             'image' => 'nullable|string',
             'duration' => 'required|string',
+            'quantity' => 'required|integer|min:1',
         ]);
 
         $cart = Session::get('cart', []);
         $productId = $request->product_id;
+        $quantity = $request->quantity;
 
         if (isset($cart[$productId])) {
-            $cart[$productId]['quantity']++;
+            $cart[$productId]['quantity'] += $quantity;
         } else {
             $cart[$productId] = [
                 'name' => $request->name,
                 'price' => $request->price,
-                'quantity' => 1,
+                'quantity' => $quantity,
                 'image' => $request->image,
                 'duration' => $request->duration,
             ];

@@ -44,7 +44,7 @@
                     </svg>
                     @php
                         $cart = Session::get('cart', []);
-                        $cartCount = array_sum(array_column($cart, 'quantity'));
+                        $cartCount = count($cart);
                     @endphp
                     @if($cartCount > 0)
                         <span class="cart-badge">{{ $cartCount }}</span>

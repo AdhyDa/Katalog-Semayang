@@ -3,17 +3,26 @@
 @section('title', 'Pesanan Berhasil - AMKT Semayang')
 
 @section('content')
+<div class="hero-overlay-cart"></div>
 <section class="success-section">
     <div class="container">
         <div class="success-card">
             <div class="success-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                 </svg>
+
             </div>
 
             <h1>Pesanan Berhasil Diajukan!</h1>
+
+            @if(session('order_number'))
+                <div class="order-number-box">
+                    <p>Nomor Pesanan Anda:</p>
+                    <h2 class="order-number">{{ session('order_number') }}</h2>
+                </div>
+            @endif
+
             <p class="success-message">
                 Terima kasih telah menyewa di AMKT Semayang. Pesanan Anda sedang kami proses.
             </p>
@@ -70,152 +79,14 @@
             </div>
 
             <div class="success-actions">
-                <a href="{{ route('home') }}" class="btn btn-outline">Kembali ke Beranda</a>
-                <a href="{{ route('katalog') }}" class="btn btn-primary">Lihat Katalog Lagi</a>
+                <div class="success-actions-back">
+                    <a href="{{ route('home') }}" class="btn btn-outline btn-block">Kembali ke Beranda</a>
+                </div>
+                <div class="success-actions-catalog">
+                    <a href="{{ route('katalog') }}" class="btn btn-primary btn-block">Lihat Katalog Lagi</a>
+                </div>
             </div>
         </div>
     </div>
 </section>
-
-<style>
-.success-section {
-    padding: 100px 0;
-    background: linear-gradient(135deg, rgba(126, 154, 62, 0.05) 0%, rgba(184, 212, 111, 0.05) 100%);
-    min-height: calc(100vh - 70px);
-    display: flex;
-    align-items: center;
-}
-
-.success-card {
-    max-width: 700px;
-    margin: 0 auto;
-    background-color: white;
-    padding: 60px 40px;
-    border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-    text-align: center;
-}
-
-.success-icon {
-    width: 120px;
-    height: 120px;
-    margin: 0 auto 30px;
-    background: linear-gradient(135deg, rgba(126, 154, 62, 0.1) 0%, rgba(184, 212, 111, 0.1) 100%);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.success-icon svg {
-    stroke: rgba(126, 154, 62, 1);
-}
-
-.success-card h1 {
-    font-family: 'Bebas Neue';
-    font-size: 36px;
-    color: rgba(126, 154, 62, 1);
-    margin-bottom: 15px;
-}
-
-.success-message {
-    font-family: 'Georgia';
-    font-size: 16px;
-    color: var(--text-gray);
-    margin-bottom: 40px;
-    line-height: 1.6;
-}
-
-.success-info {
-    display: grid;
-    gap: 25px;
-    margin-bottom: 40px;
-    text-align: left;
-}
-
-.info-item {
-    display: flex;
-    gap: 20px;
-    padding: 20px;
-    background-color: #F9F9F9;
-    border-radius: 10px;
-    border-left: 4px solid rgba(126, 154, 62, 1);
-}
-
-.info-item svg {
-    flex-shrink: 0;
-    stroke: rgba(126, 154, 62, 1);
-}
-
-.info-item h3 {
-    font-family: 'Montserrat';
-    font-size: 16px;
-    color: var(--text-dark);
-    margin-bottom: 8px;
-    font-weight: 600;
-}
-
-.info-item p {
-    font-family: 'Georgia';
-    font-size: 14px;
-    color: var(--text-gray);
-    margin: 0;
-    line-height: 1.6;
-}
-
-.success-note {
-    background-color: #FFF3E0;
-    padding: 25px;
-    border-radius: 10px;
-    border-left: 4px solid #FF9800;
-    margin-bottom: 40px;
-    text-align: left;
-}
-
-.success-note h4 {
-    font-family: 'Montserrat';
-    font-size: 16px;
-    color: var(--text-dark);
-    margin-bottom: 15px;
-    font-weight: 600;
-}
-
-.success-note ol {
-    margin-left: 20px;
-    font-family: 'Georgia';
-    font-size: 14px;
-    color: var(--text-dark);
-    line-height: 1.8;
-}
-
-.success-actions {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-}
-
-.success-actions .btn {
-    padding: 12px 30px;
-    font-family: 'Mulish';
-    font-weight: 600;
-}
-
-@media (max-width: 768px) {
-    .success-card {
-        padding: 40px 25px;
-    }
-
-    .success-card h1 {
-        font-size: 28px;
-    }
-
-    .success-actions {
-        flex-direction: column;
-    }
-
-    .success-actions .btn {
-        width: 100%;
-    }
-}
-</style>
 @endsection

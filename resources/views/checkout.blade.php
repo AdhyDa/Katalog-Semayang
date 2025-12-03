@@ -36,13 +36,13 @@
                     <div class="form-section">
                         <div class="user-type-selection">
                             <label class="user-type-card">
-                                <input type="radio" name="user_type" value="umum" checked onchange="handleUserTypeChange()">
+                                <input type="radio" name="user_type" value="umum" checked onchange="handleUserTypeChange()" onchange="handleUserTypeChange()">
                                 <div class="card-content">
                                     <h3>Penyewa Umum</h3>
                                 </div>
                             </label>
                             <label class="user-type-card">
-                                <input type="radio" name="user_type" value="organisasi" onchange="handleUserTypeChange()">
+                                <input type="radio" name="user_type" value="organisasi" onchange="handleUserTypeChange()" onchange="handleUserTypeChange()">
                                 <div class="card-content">
                                     <h3>AMKT / Orda Kaltim</h3>
                                 </div>
@@ -217,9 +217,11 @@
                             </div>
                             <small class="help-text-transfer">Foto/gambar bukti pembayaran dengan keterangan lengkap (Nama lengkap). Ukuran maks: 1 MB</small>
                         </div>
+                    </div>
 
-                        <div class="form-group" id="surat_peminjaman_group" style="display: none;">
-                            <label for="surat_peminjaman">Upload Surat Peminjaman Resmi <span class="required">*</span></label>
+                    <div class="form-section" id="section_surat_organisasi" style="display: none;">
+                        <h2>Dokumen Organisasi</h2>
+                        <div class="form-group"> <label for="surat_peminjaman">Upload Surat Peminjaman Resmi <span class="required">*</span></label>
                             <div class="file-upload-wrapper">
                                 <input
                                     type="file"
@@ -259,13 +261,23 @@
                     <!-- Syarat & Ketentuan -->
                     <div class="form-section">
                         <label class="checkbox-label">
-                            <input type="checkbox" name="syarat_ketentuan" required>
+                            <input type="checkbox" name="syarat_ketentuan" value="1" required>
                             <span>Saya telah membaca dan menyetujui <a href="{{ route('cara-sewa') }}" target="_blank">Syarat & Ketentuan</a> sewa di Katalog Semayang.</span>
                         </label>
                     </div>
 
+                    <input type="hidden" name="nominal_bayar" id="nominal_bayar_hidden" value="lunas">
+
                     <!-- Submit Button -->
-                    <button type="submit" class="btn-submit-checkout">AJUKAN SEWA SEKARANG</button>
+                    <button type="submit" class="btn-submit-checkout" id="submitButton">
+                        <span id="submitText">AJUKAN SEWA SEKARANG</span>
+                        <span id="submitLoading" style="display: none;">
+                            <svg class="spinner" width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <circle class="spinner-circle" cx="12" cy="12" r="10" stroke="white" stroke-width="3" fill="none" />
+                            </svg>
+                            MEMPROSES...
+                        </span>
+                    </button>
                 </form>
             </div>
 
@@ -326,7 +338,7 @@
 
                         <div class="payment-option-wrapper">
                             <label class="payment-option-radio">
-                                <input type="radio" name="nominal_bayar" value="lunas" checked onchange="updateTotalBayar()">
+                                <input type="radio" data-name="nominal_bayar" value="lunas" checked onchange="updateTotalBayar()">
                                 <div class="radio-content">
                                     <span class="radio-label">Bayar Lunas</span>
                                     <span class="radio-price" id="lunas_price">Rp {{ number_format($total, 0, ',', '.') }}</span>
@@ -380,11 +392,25 @@
         return parseInt(string.replace(/[^0-9]/g, ''));
     }
 
+    function updateNominalBayar(value) {
+        const hiddenInput = document.getElementById('nominal_bayar_hidden');
+        if (hiddenInput) {
+            hiddenInput.value = value;
+        }
+
+        // Sinkronkan tampilan radio button
+        document.querySelectorAll('input[data-name="nominal_bayar"]').forEach(radio => {
+            radio.checked = (radio.value === value);
+        });
+
+        updateTotalBayar();
+    }
+
     function handleUserTypeChange() {
         const userType = document.querySelector('input[name="user_type"]:checked').value;
         const paymentSection = document.getElementById('payment_section');
         const buktiTransferGroup = document.getElementById('bukti_transfer_group');
-        const suratPeminjamanGroup = document.getElementById('surat_peminjaman_group');
+        const sectionSuratOrganisasi = document.getElementById('section_surat_organisasi');
         const organisasiSection = document.getElementById('organisasi_section');
         const nominalBayarSection = document.getElementById('nominal_bayar_section');
         const totalFullAmount = document.getElementById('total_full_amount');
@@ -392,13 +418,21 @@
         const biayaTambahanRow = document.getElementById('biaya_tambahan_row');
         const pelunasanNote = document.getElementById('pelunasan_note');
         const pelunasanDpNote = document.getElementById('pelunasan_dp_note');
+        const hiddenNominalBayar = document.getElementById('nominal_bayar_hidden');
+        const metodePembayaranRadios = document.querySelectorAll('input[name="metode_pembayaran"]');
+
+        const namaInstansiInput = document.getElementById('nama_instansi');
+        const namaInstansiLabel = document.querySelector('label[for="nama_instansi"]');
 
         if (userType === 'organisasi') {
+            namaInstansiInput.required = true;
+            namaInstansiLabel.innerHTML = 'Nama Instansi <span class="required">*</span>';
+
             paymentSection.style.display = 'none';
             buktiTransferGroup.style.display = 'none';
             document.getElementById('bukti_transfer').required = false;
 
-            suratPeminjamanGroup.style.display = 'block';
+            sectionSuratOrganisasi.style.display = 'block';
             document.getElementById('surat_peminjaman').required = true;
 
             organisasiSection.style.display = 'block';
@@ -407,27 +441,58 @@
             pelunasanNote.style.display = 'none';
             pelunasanDpNote.style.display = 'none';
 
+            document.querySelectorAll('input[name="nominal_bayar"]').forEach(radio => {
+                radio.required = false;
+                radio.checked = false;
+            });
+
+            metodePembayaranRadios.forEach(radio => {
+                radio.required = false;
+                radio.checked = false;
+            });
+
+            if (hiddenNominalBayar) {
+                hiddenNominalBayar.value = '';
+                hiddenNominalBayar.removeAttribute('required');
+            }
+
             subtotalElement.innerHTML = '<s>Rp ' + new Intl.NumberFormat('id-ID').format(baseTotal) + '</s>';
             totalFullAmount.textContent = 'Rp 0';
             document.getElementById('total_transfer_amount').textContent = 'Rp 0';
 
         } else { // User type is 'umum'
+            namaInstansiInput.required = false;
+            namaInstansiLabel.innerHTML = 'Nama Instansi';
+
             paymentSection.style.display = 'block';
             buktiTransferGroup.style.display = 'block';
             document.getElementById('bukti_transfer').required = true;
 
-            suratPeminjamanGroup.style.display = 'none';
+            sectionSuratOrganisasi.style.display = 'none';
             document.getElementById('surat_peminjaman').required = false;
 
             organisasiSection.style.display = 'none';
-            if (safe(nominalBayarSection)) nominalBayarSection.style.display = 'block';
+            nominalBayarSection.style.display = 'block';
 
-            // Ensure 'lunas' is the default selected for nominal_bayar
-            document.querySelector('input[name="nominal_bayar"][value="lunas"]').checked = true;
+            document.querySelectorAll('input[name="nominal_bayar"]').forEach(radio => {
+                radio.required = true;
+            });
+
+            metodePembayaranRadios.forEach(radio => {
+                radio.required = true;
+            });
+
+            // Set default ke "lunas" untuk umum
+            if (hiddenNominalBayar) {
+                hiddenNominalBayar.value = 'lunas';
+                hiddenNominalBayar.setAttribute('required', 'required');
+            }
+
+            // Sinkronkan radio button visual
+            updateNominalBayar('lunas');
 
             subtotalElement.textContent = 'Rp ' + new Intl.NumberFormat('id-ID').format(baseTotal);
             calculateTotal();
-            updateTotalBayar();
         }
     }
 
@@ -518,7 +583,9 @@
         const userType = document.querySelector('input[name="user_type"]:checked').value;
         if (userType === 'organisasi') return;
 
-        const nominalBayar = document.querySelector('input[name="nominal_bayar"]:checked').value;
+        const hiddenInput = document.getElementById('nominal_bayar_hidden');
+        const nominalBayar = hiddenInput ? hiddenInput.value : 'lunas';
+
         const totalText = document.getElementById('total_full_amount').textContent;
         const total = parseCurrency(totalText);
 
@@ -624,5 +691,104 @@
         };
         paymentInfo.innerHTML = paymentData[method].content;
     }
+
+    // Add form submit handling
+    document.getElementById('checkoutForm').addEventListener('submit', function(e) {
+        const submitButton = document.getElementById('submitButton');
+        const submitText = document.getElementById('submitText');
+        const submitLoading = document.getElementById('submitLoading');
+
+        submitButton.disabled = true;
+        submitText.style.display = 'none';
+        submitLoading.style.display = 'inline-flex';
+
+        if (!this.checkValidity()) {
+            e.preventDefault();
+            submitButton.disabled = false;
+            submitText.style.display = 'inline';
+            submitLoading.style.display = 'none';
+            this.reportValidity();
+            return false;
+        }
+
+        const userType = document.querySelector('input[name="user_type"]:checked').value;
+
+        if (userType === 'umum') {
+            const metodePembayaran = document.querySelector('input[name="metode_pembayaran"]:checked');
+            if (!metodePembayaran) {
+                e.preventDefault();
+                alert('Silakan pilih metode pembayaran terlebih dahulu!');
+                submitButton.disabled = false;
+                submitText.style.display = 'inline';
+                submitLoading.style.display = 'none';
+                return false;
+            }
+
+            // Cek hidden input nominal_bayar
+            const nominalBayarHidden = document.getElementById('nominal_bayar_hidden');
+            if (!nominalBayarHidden || !nominalBayarHidden.value) {
+                e.preventDefault();
+                alert('Silakan pilih Bayar Lunas atau Bayar DP terlebih dahulu!');
+                submitButton.disabled = false;
+                submitText.style.display = 'inline';
+                submitLoading.style.display = 'none';
+                return false;
+            }
+
+            const buktiTransfer = document.getElementById('bukti_transfer').files.length;
+            if (!buktiTransfer) {
+                e.preventDefault();
+                alert('Silakan upload bukti transfer terlebih dahulu!');
+                submitButton.disabled = false;
+                submitText.style.display = 'inline';
+                submitLoading.style.display = 'none';
+                return false;
+            }
+        }
+
+        if (userType === 'organisasi') {
+            const namaInstansi = document.getElementById('nama_instansi').value;
+            if (!namaInstansi || namaInstansi.trim() === '') {
+                e.preventDefault();
+                alert('Nama Instansi wajib diisi untuk kategori Organisasi!');
+                submitButton.disabled = false;
+                submitText.style.display = 'inline';
+                submitLoading.style.display = 'none';
+                return false;
+            }
+
+            const suratPeminjaman = document.getElementById('surat_peminjaman').files.length;
+            if (!suratPeminjaman) {
+                e.preventDefault();
+                alert('Silakan upload surat peminjaman terlebih dahulu!');
+                submitButton.disabled = false;
+                submitText.style.display = 'inline';
+                submitLoading.style.display = 'none';
+                return false;
+            }
+        }
+
+        const dokumenJaminan = document.getElementById('dokumen_jaminan').files.length;
+        if (!dokumenJaminan) {
+            e.preventDefault();
+            alert('Silakan upload dokumen jaminan (KTP/KTM/SIM) terlebih dahulu!');
+            submitButton.disabled = false;
+            submitText.style.display = 'inline';
+            submitLoading.style.display = 'none';
+            return false;
+        }
+
+        const syaratKetentuan = document.querySelector('input[name="syarat_ketentuan"]').checked;
+        if (!syaratKetentuan) {
+            e.preventDefault();
+            alert('Anda harus menyetujui Syarat & Ketentuan terlebih dahulu!');
+            submitButton.disabled = false;
+            submitText.style.display = 'inline';
+            submitLoading.style.display = 'none';
+            return false;
+        }
+
+        return true;
+    });
 </script>
 @endsection

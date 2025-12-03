@@ -7,14 +7,35 @@
 <div class="hero-overlay-cart"></div>
 
 <div class="breadcrumb">
-    <a href="{{ route('home') }}">Beranda</a> &gt;
-    <a href="{{ route('katalog') }}">Katalog</a> &gt;
-    <a href="{{ route('katalog.kategori', ucfirst($product['kategori'])) }}">{{ ucfirst($product['kategori']) }}</a> &gt;
+    <a href="{{ route('home') }}">Beranda</a> >
+    <a href="{{ route('katalog') }}">Katalog</a> >
+    <a href="{{ route('katalog.kategori', ($product['kategori'])) }}">{{ ucfirst($product['kategori']) }}</a> >
     {{ $product['name'] }}
 </div>
 
-<!-- Product Detail Section -->
 <section class="product-detail-section">
+    <!-- Alert Messages -->
+    @if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+    @endif
+
+    @if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+    @endif
+
+    @if($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
     <div class="container">
         <div class="product-detail-grid">
             <!-- Left: Product Images -->
