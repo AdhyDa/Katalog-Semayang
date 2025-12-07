@@ -35,21 +35,23 @@
                 <li><a href="{{ route('tentang') }}" class="{{ Request::is('tentang') ? 'active' : '' }}">Tentang Kami</a></li>
             </ul>
             <div class="nav-buttons">
-                <a href="{{ route('cart') }}" class="btn-cart">
+                @if(Auth::check() && Auth::user()->role != 'admin')
+                    <a href="{{ route('cart') }}" class="btn-cart">
 
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="8" cy="21" r="1"/>
-                        <circle cx="19" cy="21" r="1"/>
-                        <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
-                    </svg>
-                    @php
-                        $cart = Session::get('cart', []);
-                        $cartCount = count($cart);
-                    @endphp
-                    @if($cartCount > 0)
-                        <span class="cart-badge">{{ $cartCount }}</span>
-                    @endif
-                </a>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="8" cy="21" r="1"/>
+                            <circle cx="19" cy="21" r="1"/>
+                            <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+                        </svg>
+                        @php
+                            $cart = Session::get('cart', []);
+                            $cartCount = count($cart);
+                        @endphp
+                        @if($cartCount > 0)
+                            <span class="cart-badge">{{ $cartCount }}</span>
+                        @endif
+                    </a>
+                @endif
             </div>
             <div class="nav-buttons-auth">
                 @auth
@@ -62,8 +64,15 @@
                             </svg>
                         </button>
                         <div class="dropdown-menu">
-                            <a href="#" class="dropdown-item">Profil Saya</a>
-                            <a href="#" class="dropdown-item">Pesanan Saya</a>
+                            @if(Auth::check() && Auth::user()->role == 'admin')
+                                <a href="{{ route('admin.dashboard') }}" class="dropdown-item">Dashboard</a>
+                                <a href="{{ route('admin.orders') }}" class="dropdown-item">Kelola Pesanan</a>
+                                <a href="{{ route('admin.products.index') }}" class="dropdown-item">Kelola Produk</a>
+                                <a href="{{ route('admin.transactions') }}" class="dropdown-item">Transaksi</a>
+                            @else
+                                <a href="{{ route('customer.profile') }}" class="dropdown-item">Profil Saya</a>
+                                <a href="{{ route('customer.orders') }}" class="dropdown-item">Pesanan Saya</a>
+                            @endif
                             <hr class="dropdown-divider">
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf

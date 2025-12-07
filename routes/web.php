@@ -6,6 +6,8 @@ use App\Http\Controllers\KatalogController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\CustomerController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/katalog', [KatalogController::class, 'index'])->name('katalog');
@@ -46,4 +48,57 @@ Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('
 
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+});
+
+// Admin Routes
+Route::middleware('auth')->prefix('admin')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('admin.dashboard');
+
+    Route::get('/orders', [OrderController::class, 'index'])->name('admin.orders');
+    Route::post('/order/confirm/{id}', [OrderController::class, 'confirm'])->name('admin.order.confirm');
+    Route::post('/order/reject/{id}', [OrderController::class, 'reject'])->name('admin.order.reject');
+
+    Route::get('/order-detail/{id}', function ($id) {
+        // Note: This view requires $order data, may need a controller
+        return view('admin.order-detail');
+    })->name('admin.order-detail');
+
+    Route::resource('products', \App\Http\Controllers\Admin\ProductController::class)->names([
+        'index' => 'admin.products.index',
+        'create' => 'admin.products.create',
+        'store' => 'admin.products.store',
+        'show' => 'admin.products.show',
+        'edit' => 'admin.products.edit',
+        'update' => 'admin.products.update',
+        'destroy' => 'admin.products.destroy'
+    ]);
+
+    Route::get('/transactions', [OrderController::class, 'transactions'])->name('admin.transactions');
+    Route::post('/order/complete/{id}', [OrderController::class, 'complete'])->name('admin.order.complete');
+
+    Route::get('/customers', function () {
+        return view('admin.customers');
+    })->name('admin.customers');
+});
+
+// Customer Routes
+Route::middleware('auth')->prefix('customer')->group(function () {
+    Route::get('/orders', function () {
+        $orders = auth()->user()->rentals()->orderBy('created_at', 'desc')->paginate(10);
+        return view('customer.orders', compact('orders'));
+    })->name('customer.orders');
+
+    Route::get('/order/{id}', function ($id) {
+        $order = auth()->user()->rentals()->findOrFail($id);
+        return view('customer.order-detail', compact('order'));
+    })->name('customer.order.detail');
+
+    Route::get('/profile', function () {
+        return view('customer.profile', ['user' => auth()->user()]);
+    })->name('customer.profile');
+
+    Route::put('/profile', [CustomerController::class, 'update'])->name('customer.profile.update');
+    Route::post('/password/change', [CustomerController::class, 'changePassword'])->name('customer.password.change');
 });
