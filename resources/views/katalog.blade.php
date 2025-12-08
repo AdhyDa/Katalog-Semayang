@@ -116,7 +116,7 @@
                             @endif
                         </div>
                         <p class="product-price">Harga Sewa: Rp {{ number_format($product['harga'], 0, ',', '.') }} / 3 hari</p>
-                        <a href="#" class="btn btn-detail {{ $product['status'] == 'habis' ? 'btn-disabled' : '' }}">
+                        <a href="{{ route('katalog.show', ['id' => $product['id']]) }}" class="btn btn-detail {{ $product['status'] == 'habis' ? 'btn-disabled' : '' }}">
                             Lihat Detail ›
                         </a>
                     </div>
