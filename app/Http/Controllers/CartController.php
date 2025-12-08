@@ -103,76 +103,7 @@ class CartController extends Controller
 
     private function getProductStock($id)
     {
-        // Get stock from products array
-        $products = $this->getAllProducts();
-        foreach ($products as $product) {
-            if ($product['id'] == $id) {
-                return $product['stock'];
-            }
-        }
-        return 0; // Default if not found
-    }
-
-    private function getAllProducts()
-    {
-        // Sample data - in real app, fetch from database
-        return [
-            [
-                'id' => 1,
-                'name' => 'Set Baju Adat Wanita (Merah)',
-                'kategori' => 'wanita',
-                'harga' => 55000,
-                'status' => 'tersedia',
-                'stock' => 5,
-                'image' => 'baju-wanita-merah.jpg'
-            ],
-            [
-                'id' => 2,
-                'name' => 'Baju Adat Pria (Hitam)',
-                'kategori' => 'pria',
-                'harga' => 55000,
-                'status' => 'terbatas',
-                'sisa' => 1,
-                'stock' => 1,
-                'image' => 'baju-pria-hitam.jpg'
-            ],
-            [
-                'id' => 3,
-                'name' => 'Cincin Enggang Asli',
-                'kategori' => 'aksesoris',
-                'harga' => 55000,
-                'status' => 'habis',
-                'stock' => 0,
-                'image' => 'cincin-enggang.jpg'
-            ],
-            [
-                'id' => 4,
-                'name' => 'Set Baju Adat Wanita (Kuning)',
-                'kategori' => 'wanita',
-                'harga' => 60000,
-                'status' => 'tersedia',
-                'stock' => 3,
-                'image' => 'baju-wanita-kuning.jpg'
-            ],
-            [
-                'id' => 5,
-                'name' => 'Baju Adat Pria (Merah)',
-                'kategori' => 'pria',
-                'harga' => 55000,
-                'status' => 'terbatas',
-                'sisa' => 2,
-                'stock' => 2,
-                'image' => 'baju-pria-merah.jpg'
-            ],
-            [
-                'id' => 6,
-                'name' => 'Mandau (Pedang Tradisional)',
-                'kategori' => 'aksesoris',
-                'harga' => 75000,
-                'status' => 'tersedia',
-                'stock' => 4,
-                'image' => 'mandau.jpg'
-            ],
-        ];
+        $product = \App\Models\Product::find($id);
+        return $product ? $product->stock_available : 0;
     }
 }

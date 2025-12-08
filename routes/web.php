@@ -7,6 +7,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\LaporanController;
 use App\Http\Controllers\CustomerController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -78,9 +80,12 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/transactions', [OrderController::class, 'transactions'])->name('admin.transactions');
     Route::post('/order/complete/{id}', [OrderController::class, 'complete'])->name('admin.order.complete');
 
-    Route::get('/customers', function () {
-        return view('admin.customers');
-    })->name('admin.customers');
+    Route::get('/customers', [AdminController::class, 'customers'])->name('admin.customers');
+
+    Route::get('/laporan', [LaporanController::class, 'index'])->name('admin.reports');
+
+    Route::get('/ganti-password', [AdminController::class, 'showChangePassword'])->name('password.form');
+    Route::post('/ganti-password', [AdminController::class, 'updatePassword'])->name('password.update');
 });
 
 // Customer Routes
@@ -101,4 +106,6 @@ Route::middleware('auth')->prefix('customer')->group(function () {
 
     Route::put('/profile', [CustomerController::class, 'update'])->name('customer.profile.update');
     Route::post('/password/change', [CustomerController::class, 'changePassword'])->name('customer.password.change');
+    Route::get('/ganti-password', [CustomerController::class, 'showChangePassword'])->name('customer.password.form');
+    Route::post('/ganti-password', [CustomerController::class, 'updatePassword'])->name('customer.password.update');
 });

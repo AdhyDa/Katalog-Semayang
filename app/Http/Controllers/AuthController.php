@@ -83,6 +83,21 @@ class AuthController extends Controller
         ]);
         $remember = $request->has('remember');
 
+        // Debug: Check if user exists
+        $user = User::where('email', $credentials['email'])->first();
+        if (!$user) {
+            return back()->withErrors([
+                'email' => 'User not found.',
+            ])->onlyInput('email');
+        }
+
+        // Debug: Check password
+        if (!Hash::check($credentials['password'], $user->password)) {
+            return back()->withErrors([
+                'email' => 'Password incorrect.',
+            ])->onlyInput('email');
+        }
+
         if (Auth::attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
             return redirect()->intended(route('home'))->with('success', 'Selamat datang kembali!');

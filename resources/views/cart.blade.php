@@ -42,7 +42,7 @@
                     @foreach($cart as $id => $item)
                     <div class="cart-item">
                         <div class="item-image">
-                            <img src="{{ $item['image'] ?? asset('images/products/placeholder.jpg') }}" alt="{{ $item['name'] }}">
+                            <img src="{{ $item['image'] ? asset('images/' . $item['image']) : asset('images/placeholder.jpg') }}" alt="{{ $item['name'] }}">
                         </div>
                         <div class="item-details" data-price="{{ $item['price'] }}" data-id="{{ $id }}">
                             <h3>{{ $item['name'] }}</h3>

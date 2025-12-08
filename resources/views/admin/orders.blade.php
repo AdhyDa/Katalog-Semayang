@@ -45,7 +45,7 @@
                 <th class="border border-gray-300 px-4 py-4 text-center text-sm font-bold text-gray-600">Pemesan</th>
                 <th class="border border-gray-300 px-4 py-4 text-center text-sm font-bold text-gray-600">Tanggal Sewa</th>
                 <th class="border border-gray-300 px-4 py-4 text-center text-sm font-bold text-gray-600">Total Barang</th>
-                <th class="border border-gray-300 px-4 py-4 text-center text-sm font-bold text-gray-600">Status</th>
+                <th class="border border-gray-300 px-4 py-4 text-center text-sm font-bold text-gray-600">Total Harga</th>
                 <th class="border border-gray-300 px-4 py-4 text-center text-sm font-bold text-gray-600">Aksi</th>
             </tr>
         </thead>
@@ -59,9 +59,9 @@
                     </td>
                     <td class="border border-gray-300 px-4 py-4 text-center text-sm font-bold text-gray-800">{{ $order->orderItems->sum('quantity') }} Paket</td>
                     <td class="border border-gray-300 px-4 py-4 text-center text-sm font-bold text-gray-800">
-                        Rp {{ number_format($order->payment_amount, 0, ',', '.') }} - {{ strtoupper($order->payment_type ?? 'DP') }}
+                        Rp {{ number_format($order->total, 0, ',', '.') }}
                     </td>
-                    
+
                     <td class="border border-gray-300 px-4 py-4 text-center">
                         <button @click="showModal = true" class="inline-block bg-[#718355] text-white px-8 py-2 rounded-full text-xs font-bold hover:bg-[#5a6944] transition uppercase tracking-wide cursor-pointer">
                             TINJAU
@@ -69,9 +69,9 @@
 
                         <div x-show="showModal" style="display: none;">
                             <div class="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overflow-x-hidden bg-black/60 backdrop-blur-sm p-4 md:p-0">
-                                
+
                                 <div @click.away="showModal = false" class="relative w-full max-w-5xl bg-white rounded-3xl shadow-2xl p-8 transform transition-all">
-                                    
+
                                     <div class="text-center mb-8 relative">
                                         <h2 class="text-3xl font-extrabold text-black" style="font-family: serif;">Tinjau & Validasi</h2>
                                         <button @click="showModal = false" class="absolute right-0 top-0 text-gray-400 hover:text-gray-600">
@@ -80,7 +80,7 @@
                                     </div>
 
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                                        
+
                                         <div class="space-y-6 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar">
                                             @foreach($order->orderItems as $item)
                                             <div class="border-b border-gray-200 pb-4 last:border-0">
@@ -88,7 +88,7 @@
                                                     {{ $item->product->name }}
                                                     @if($item->quantity > 1) <span class="text-gray-500 text-sm font-sans">(x{{ $item->quantity }})</span> @endif
                                                 </h3>
-                                                
+
                                                 <div class="mb-2">
                                                     @if($item->product->stock_available >= $item->quantity)
                                                         <span class="text-[#718355] font-bold text-sm">Stok Aman</span>

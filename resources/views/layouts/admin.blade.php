@@ -7,7 +7,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:wght@900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
 
     @stack('styles')
 </head>
@@ -22,8 +22,8 @@
                             <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-16 h-16 rounded-full object-cover">
                         </a>
                         <div>
-                            <p class="text-sm font-light text-white opacity-80">Admin</p>
-                            <h1 class="text-xl font-extrabold text-white leading-none">Semayang</h1>
+                            <a href="{{ route('home') }}" class="text-sm font-light text-white opacity-80">Admin</a>
+                            <a href="{{ route('home') }}" class="text-xl font-extrabold text-white leading-none">Semayang</a>
                         </div>
                     </div>
                     <div class="h-px w-full bg-white/30"></div>
@@ -60,19 +60,19 @@
                         <span>Data Pelanggan</span>
                     </a>
 
-                    <a href="#"
-                        class="flex items-center gap-3 px-4 py-3 rounded-full transition-all duration-300 text-white hover:bg-[rgba(31,43,3,0.4)]">
+                    <a href="{{ route('admin.reports') }}"
+                        class="flex items-center gap-3 px-4 py-3 rounded-full transition-all duration-300 {{ request()->routeIs('admin.reports') ? 'bg-white text-[#718355] font-bold shadow-lg' : 'text-white hover:bg-[rgba(31,43,3,0.4)]' }}">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
                         <span>Laporan</span>
                     </a>
 
-                    <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-full transition-all duration-300 text-white hover:bg-[rgba(31,43,3,0.4)]">
+                    <a href="{{ route('password.form') }}" class="flex items-center gap-3 px-4 py-3 rounded-full transition-all duration-300 {{ request()->routeIs('password.form') ? 'bg-white text-[#718355] font-bold shadow-lg' : 'text-white hover:bg-[rgba(31,43,3,0.4)]' }}">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/></svg>
                         <span>Ganti Password</span>
                     </a>
                 </nav>
 
-                <div class="mt-auto pt-4">
+                <div class="mt-auto pt-4" style="width: 250px;">
                     <form id="logout-form-admin" action="{{ route('logout') }}" method="POST" class="hidden">
                         @csrf
                     </form>

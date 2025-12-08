@@ -41,14 +41,11 @@
             <!-- Left: Product Images -->
             <div class="product-images">
                 <div class="main-image-detail">
-                    <img src="{{ asset('images/products/' . $product['image']) }}" alt="{{ $product['name'] }}" id="mainImageDetail">
-                </div>
-                <div class="thumbnail-images-detail">
-                    @foreach($product['images'] as $index => $img)
-                    <div class="thumbnail-detail {{ $index === 0 ? 'active' : '' }}" onclick="changeImageDetail('{{ asset('images/products/' . $img) }}', this)">
-                        <img src="{{ asset('images/products/' . $img) }}" alt="Thumbnail {{ $index + 1 }}">
-                    </div>
-                    @endforeach
+                    @if($product['image'])
+                        <img src="{{ asset('images/' . $product['image']) }}" alt="{{ $product['name'] }}" id="mainImageDetail">
+                    @else
+                        <img src="{{ asset('images/placeholder.jpg') }}" alt="{{ $product['name'] }}" id="mainImageDetail">
+                    @endif
                 </div>
             </div>
 
@@ -110,7 +107,7 @@
                             <input type="hidden" name="product_id" value="{{ $product['id'] }}">
                             <input type="hidden" name="name" value="{{ $product['name'] }}">
                             <input type="hidden" name="price" value="{{ $product['harga'] }}">
-                            <input type="hidden" name="image" value="{{ asset('images/products/' . $product['image']) }}">
+                            <input type="hidden" name="image" value="{{ $product['image'] }}">
                             <input type="hidden" name="duration" value="{{ $product['duration'] }}">
                             <input type="hidden" name="quantity" id="quantity-input-detail" value="1">
                             <button type="submit" class="btn-cart-add-detail" onclick="updateQuantityInputDetail()">

@@ -100,7 +100,7 @@ class Rental extends Model
 
     public function getPaymentAmountAttribute()
     {
-        return $this->nominal_bayar;
+        return (float) $this->nominal_bayar;
     }
 
     public function getPaymentTypeAttribute()

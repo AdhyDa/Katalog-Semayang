@@ -60,13 +60,9 @@
             <div class="bg-white border-2 border-black rounded-[1.5rem] p-4 flex flex-col md:flex-row gap-6 relative group hover:shadow-lg transition-all duration-300">
                 <div class="w-full md:w-48 h-48 flex-shrink-0">
                     @if($product->image)
-                        <img src="{{ Storage::url($product->image) }}" alt="{{ $product->name }}" class="w-full h-full object-cover rounded-xl border border-gray-200">
+                        <img src="{{ asset('images/' . $product->image) }}" alt="{{ $product->name }}" class="w-full h-full object-cover rounded-xl border border-gray-200">
                     @else
-                        <div class="w-full h-full bg-blue-50 rounded-xl border border-gray-200 flex items-center justify-center relative overflow-hidden">
-                            <svg class="absolute bottom-0 w-full text-[#718355]" viewBox="0 0 1440 320" preserveAspectRatio="none">
-                                <path fill="currentColor" fill-opacity="1" d="M0,224L60,213.3C120,203,240,181,360,181.3C480,181,600,203,720,224C840,245,960,267,1080,261.3C1200,256,1320,224,1380,208L1440,192L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
-                            </svg>
-                        </div>
+                        <img src="{{ asset('images/placeholder.jpg') }}" alt="{{ $product->name }}" class="w-full h-full object-cover rounded-xl border border-gray-200">
                     @endif
                 </div>
 
@@ -243,7 +239,7 @@
                         description: product.description
                     };
                     // Set image preview dari storage jika ada
-                    this.imagePreview = product.image ? "{{ Storage::url('') }}" + product.image : null;
+                    this.imagePreview = product.image ? "{{ asset('images/') }}" + product.image : null;
                 }
             },
 

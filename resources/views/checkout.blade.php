@@ -288,7 +288,7 @@
                 <div class="summary-items">
                     @foreach($cart as $item)
                     <div class="summary-item">
-                        <img src="{{ $item['image'] }}" alt="{{ $item['name'] }}">
+                        <img src="{{ $item['image'] ? asset('images/' . $item['image']) : asset('images/placeholder.jpg') }}" alt="{{ $item['name'] }}">
                         <div class="item-info">
                             <h4>{{ $item['name'] }}</h4>
                             <p>{{ $item['quantity'] }} Pasang</p>
@@ -338,7 +338,7 @@
 
                         <div class="payment-option-wrapper">
                             <label class="payment-option-radio">
-                                <input type="radio" data-name="nominal_bayar" value="lunas" checked onchange="updateTotalBayar()">
+                                <input type="radio" name="nominal_bayar" value="lunas" checked onchange="document.getElementById('nominal_bayar_hidden').value = this.value; updateTotalBayar();">
                                 <div class="radio-content">
                                     <span class="radio-label">Bayar Lunas</span>
                                     <span class="radio-price" id="lunas_price">Rp {{ number_format($total, 0, ',', '.') }}</span>
@@ -346,7 +346,7 @@
                             </label>
 
                             <label class="payment-option-radio">
-                                <input type="radio" name="nominal_bayar" value="dp" onchange="updateTotalBayar()">
+                                <input type="radio" name="nominal_bayar" value="dp" onchange="document.getElementById('nominal_bayar_hidden').value = this.value; updateTotalBayar();">
                                 <div class="radio-content">
                                     <span class="radio-label">Bayar DP</span>
                                     <span class="radio-price" id="dp_price">Rp {{ number_format($total * 0.5, 0, ',', '.') }}</span>
