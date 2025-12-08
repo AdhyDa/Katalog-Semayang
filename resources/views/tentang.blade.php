@@ -143,17 +143,17 @@
         <div class="team-grid">
             <div class="team-card">
                 <div class="team-photo">
-                    <img src="{{ asset('images/team/adhyaksa.jpg') }}" alt="Adhyaksa">
+                    <img src="{{ asset('images/team/aluna.jpeg') }}" alt="Aluna">
                 </div>
-                <h3>Adhyaksa</h3>
+                <h3>Aluna</h3>
                 <p>Mahasiswa</p>
             </div>
 
             <div class="team-card">
                 <div class="team-photo">
-                    <img src="{{ asset('images/team/aluna.jpg') }}" alt="Aluna">
+                    <img src="{{ asset('images/team/adhyaksa.jpg') }}" alt="Adhyaksa">
                 </div>
-                <h3>Aluna</h3>
+                <h3>Adhyaksa</h3>
                 <p>Mahasiswa</p>
             </div>
 

@@ -20,36 +20,36 @@
         <div class="steps-grid">
             <div class="step-card">
                 <div class="step-number">1</div>
-                <div class="step-icon">
-                    <img src="{{ asset('images/icons/icon-search.svg') }}" alt="Pilih Baju">
-                </div>
+                    <div class="cara-image">
+                        <img src="{{ asset('images/step-1.jpg') }}" alt="Pilih Baju">
+                    </div>
                 <h3>Pilih Baju</h3>
                 <p>Cari dan pilih baju favoritmu di katalog.</p>
             </div>
 
             <div class="step-card">
                 <div class="step-number">2</div>
-                <div class="step-icon">
-                    <img src="{{ asset('images/icons/icon-form.svg') }}" alt="Mengisi Form">
-                </div>
+                    <div class="cara-image">
+                        <img src="{{ asset('images/step-2.jpg') }}" alt="Mengisi Form">
+                    </div>
                 <h3>Mengisi Form</h3>
                 <p>Isi formulir pesanan dan tentukan tanggal sewa.</p>
             </div>
 
             <div class="step-card">
                 <div class="step-number">3</div>
-                <div class="step-icon">
-                    <img src="{{ asset('images/icons/icon-payment.svg') }}" alt="Pembayaran">
-                </div>
+                    <div class="cara-image">
+                        <img src="{{ asset('images/step-3.png') }}" alt="Pembayaran">
+                    </div>
                 <h3>Melakukan Pembayaran</h3>
                 <p>Lakukan pembayaran sesuai dengan metode yang tersedia</p>
             </div>
 
             <div class="step-card">
                 <div class="step-number">4</div>
-                <div class="step-icon">
-                    <img src="{{ asset('images/icons/icon-pickup.svg') }}" alt="Mengambil Baju">
-                </div>
+                    <div class="cara-image">
+                        <img src="{{ asset('images/step-4.jpg') }}" alt="Mengambil Baju">
+                    </div>
                 <h3>Mengambil Baju</h3>
                 <p>Ambil bajumu di tempat kami</p>
             </div>

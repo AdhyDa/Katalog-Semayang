@@ -80,8 +80,6 @@ body {
     font-weight: 500;
 }
 
-
-
 .navbar-scrolled .btn-outline-nav {
     border-color: rgba(126, 154, 62, 1);
     color: white;
@@ -96,6 +94,121 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.hamburger:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 3px 0;
+    transition: 0.3s;
+    border-radius: 2px;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+.nav-menu-mobile {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: rgba(77, 77, 77, 0.95);
+    backdrop-filter: blur(10px);
+    display: none;
+    flex-direction: column;
+    padding: 20px 0;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    z-index: 999;
+}
+
+.nav-menu-mobile a {
+    padding: 15px 20px;
+    color: white;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background-color 0.3s;
+}
+
+.nav-menu-mobile a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav-menu-mobile .nav-buttons {
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 10px;
+}
+
+.nav-menu-mobile .nav-buttons a {
+    border: none;
+    padding: 10px 0;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.nav-menu-mobile .nav-buttons .btn-cart {
+    width: 100%;
+    justify-content: center;
+}
+
+.nav-menu-mobile .user-dropdown {
+    width: 100%;
+}
+
+.nav-menu-mobile .user-btn {
+    width: 100%;
+    justify-content: center;
+}
+
+/* Mobile Navigation Toggle */
+#nav-toggle {
+    display: none;
+}
+
+#nav-toggle:checked ~ .nav-menu-mobile {
+    display: flex;
+}
+
+#nav-toggle:checked ~ .hamburger {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+#nav-toggle:checked ~ .hamburger span:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+#nav-toggle:checked ~ .hamburger span:nth-child(2) {
+    opacity: 0;
+}
+
+#nav-toggle:checked ~ .hamburger span:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
 }
 
 .nav-brand {
@@ -267,7 +380,7 @@ body {
 }
 
 .dropdown-item:hover {
-    background-color: rgba(184, 212, 111, 0.1);
+    background-color: rgba(184, 212, 111, 0.5);
 }
 
 .dropdown-divider {
@@ -1158,12 +1271,6 @@ body {
     opacity: 0.8;
 }
 
-.contact-info {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 20px;
-}
-
 .contact-info li {
     margin-bottom: 20px;
     font-size: 15px;
@@ -1463,7 +1570,7 @@ body {
     cursor: pointer;
     transition: all 0.3s;
     position: relative;
-    z-index: 1001;
+    z-index: 1product-image;
 }
 
 .filter-icon-btn:hover {
@@ -1596,7 +1703,7 @@ body {
     background-color: var(--bg-white);
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
@@ -1617,7 +1724,6 @@ body {
 }
 
 .product-image img {
-    width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s;
@@ -1698,6 +1804,7 @@ body {
     color: #666;
     font-size: 14px;
     margin-bottom: 15px;
+    font-family: 'Mulish';
 }
 
 .btn-detail {
@@ -1730,43 +1837,57 @@ body {
 }
 
 /* Pagination */
-.pagination {
+.produk-pagination {
     display: flex;
     justify-content: center;
-    gap: 10px;
     align-items: center;
+    gap: 15px;
+    margin-top: 40px;
 }
 
-.page-btn {
-    min-width: 40px;
-    height: 40px;
-    padding: 0 12px;
-    border: 2px solid #E0E0E0;
-    background-color: white;
-    color: var(--text-dark);
-    border-radius: 10px;
+.pagination-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
     cursor: pointer;
-    font-weight: 600;
-    font-size: 15px;
-    transition: all 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+
+    background-color: transparent;
+    border: 2px solid #8da560;
+    color: #8da560;
 }
 
-.page-btn:hover {
-    border-color: rgba(126, 154, 62, 1);
-    color: rgba(126, 154, 62, 1);
+.pagination-item:hover:not(.active):not(.disabled) {
+    background-color: #f0fdf4;
 }
 
-.page-btn.active {
-    background-color: rgba(126, 154, 62, 1);
-    border-color: rgba(126, 154, 62, 1);
+.pagination-item.active {
+    background-color: #8da560;
     color: white;
+    border-color: #8da560;
 }
 
-.page-next svg {
-    stroke: currentColor;
+.pagination-item.disabled {
+    border-color: #e5e7eb;
+    color: #d1d5db;
+    cursor: not-allowed;
+}
+
+@media (max-width: 640px) {
+    .pagination-item {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+        border-radius: 8px;
+        gap: 8px;
+    }
 }
 
 /* Responsive */
@@ -1863,12 +1984,12 @@ body {
 .cara-sewa-steps .steps-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
+    gap: 25px;
 }
 
 .step-card {
     background-color: var(--bg-white);
-    padding: 40px 30px;
+    padding: 40px 40px;
     border-radius: 15px;
     border-left: 2px solid rgba(126, 154, 62, 1);
     border-bottom: 2px solid rgba(126, 154, 62, 1);
@@ -1901,20 +2022,20 @@ body {
     font-size: 18px;
 }
 
-.step-icon {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(184, 212, 111, 0.1);
-    border-radius: 50%;
+.cara-image {
+    width: 250px;
+    height: 250px;
+    margin-bottom: 20px;
+    margin-top: -35px;
+    margin-left: -37px;
+    overflow: hidden;
+    border-radius: 10px;
 }
 
-.step-icon img {
-    width: 40px;
-    height: 40px;
+.cara-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .step-card h3 {
@@ -2751,10 +2872,25 @@ body {
     transition: color 0.15s ease, opacity 0.15s ease;
 }
 
-.input-group input:focus::-webkit-input-placeholder { color: transparent; opacity: 0; }
-.input-group input:focus::-moz-placeholder { color: transparent; opacity: 0; }
-.input-group input:focus:-ms-input-placeholder { color: transparent; opacity: 0; }
-.input-group input:focus:-moz-placeholder { color: transparent; opacity: 0; }
+.input-group input:focus::-webkit-input-placeholder {
+    color: transparent;
+    opacity: 0;
+}
+
+.input-group input:focus::-moz-placeholder {
+    color: transparent;
+    opacity: 0;
+}
+
+.input-group input:focus:-ms-input-placeholder {
+    color: transparent;
+    opacity: 0;
+}
+
+.input-group input:focus:-moz-placeholder {
+    color: transparent;
+    opacity: 0;
+}
 
 .input-group label {
     position: absolute;
@@ -3319,20 +3455,6 @@ body {
     font-weight: 500;
 }
 
-/* Alert */
-.alert {
-    padding: 15px 20px;
-    border-radius: 10px;
-    margin-bottom: 30px;
-    font-size: 15px;
-}
-
-.alert-success {
-    background-color: #D4EDDA;
-    color: #155724;
-    border: 1px solid #C3E6CB;
-}
-
 /* Responsive */
 @media (max-width: 768px) {
     .hero {
@@ -3444,8 +3566,6 @@ body {
         position: static;
     }
 }
-
-/* Product Detail Page - Tambahkan ke style.css */
 
 /* Product Detail Section */
 .product-detail-section {
@@ -4500,19 +4620,6 @@ body {
     margin-bottom: 40px;
     line-height: 1.6;
     font-family: 'Montserrat';
-}
-
-.alert {
-    padding: 15px 20px;
-    border-radius: 10px;
-    margin-bottom: 30px;
-    font-size: 14px;
-}
-
-.alert-success {
-    background-color: #E8F5E9;
-    color: #2E7D32;
-    border: 1px solid #4CAF50;
 }
 
 .success-info {

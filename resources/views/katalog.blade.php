@@ -96,7 +96,11 @@
             @forelse($products as $product)
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="{{ asset('images/products/' . $product['image']) }}" alt="{{ $product['name'] }}">
+                        @if($product['image'])
+                            <img src="{{ asset('images/' . $product['image']) }}" alt="{{ $product['name'] }}">
+                        @else
+                            <img src="{{ asset('images/placeholder.jpg') }}" alt="{{ $product['name'] }}">
+                        @endif
                     </div>
                     <div class="product-info">
                         <div class="product-header">
@@ -130,16 +134,8 @@
 
         <!-- Pagination -->
         <div class="pagination">
-            <button class="page-btn active">1</button>
-            <button class="page-btn">2</button>
-            <button class="page-btn page-next">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
-            </button>
+            {{ $products->links('pagination.produk') }}
         </div>
-    </div>
-</section>
 
 <script>
 // Toggle Filter Dropdown

@@ -18,9 +18,13 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'username',
         'email',
         'phone',
+        'institution',
+        'photo',
         'password',
+        'role',
     ];
 
     /**
@@ -54,6 +58,24 @@ class User extends Authenticatable
     public function getFirstNameAttribute()
     {
         return explode(' ', $this->name)[0];
+    }
+
+    /**
+     * Check if the user is an admin.
+     *
+     * @return bool
+     */
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
+    }
+
+    /**
+     * Get the rentals for the user.
+     */
+    public function rentals()
+    {
+        return $this->hasMany(Rental::class);
     }
 
     /**
