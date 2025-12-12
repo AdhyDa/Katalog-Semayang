@@ -4,7 +4,6 @@
 
 @section('content')
 <div x-data="productManager()" class="relative">
-
     <div class="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
             <h1 class="text-4xl font-extrabold text-black tracking-tight" style="font-family: 'Inter', sans-serif;">
@@ -12,7 +11,7 @@
             </h1>
         </div>
         <div>
-            <button @click="openModal('create')" class="inline-flex items-center px-6 py-3 bg-[#7e9a3e] hover:bg-[#5a6944] text-white font-bold rounded-full transition shadow-sm">
+            <button @click="openModal('create')" class="inline-flex items-center px-6 py-3 bg-[#7e9a3e] hover:bg-[#1f2b03] text-white font-bold rounded-full transition shadow-sm">
                 <span class="mr-2 text-xl">+</span> Tambah Baju Baru
             </button>
         </div>
@@ -93,7 +92,7 @@
                             <button type="submit" class="w-full bg-white border border-gray-400 text-gray-500 hover:text-red-500 hover:border-red-500 font-medium py-2.5 rounded-full transition text-sm">Hapus</button>
                         </form>
 
-                        <button @click="openModal('edit', {{ $product }})" class="w-full bg-[#7e9a3e] hover:bg-[#5a6944] text-white font-medium py-2.5 rounded-full transition text-sm">
+                        <button @click='openModal("edit", @json(collect($product)->merge(["included_items" => is_array($product->included_items) ? implode(", ", $product->included_items) : $product->included_items])))' class="w-full bg-[#7e9a3e] hover:bg-[#1f2b03] text-white font-medium py-2.5 rounded-full transition text-sm">
                             Edit
                         </button>
                     </div>
@@ -107,12 +106,12 @@
     </div>
 
     <div class="mt-8">
-        {{ $products->appends(request()->query())->links() }}
+        {{ $products->appends(request()->query())->links('pagination.admin') }}
     </div>
 
-    <div x-show="showModal" style="display: none;" class="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overflow-x-hidden bg-black/60 backdrop-blur-sm p-4">
+    <div x-show="showModal" style="display: none;" class="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overflow-x-hidden bg-black/60 backdrop-blur-sm p-4 md:p-0">
 
-        <div @click.away="closeModal()" class="relative w-full max-w-5xl bg-white rounded-[2rem] shadow-2xl p-8 transition-all">
+        <div @click.away="closeModal()" class="relative w-full max-w-4xl bg-white rounded-[2rem] shadow-2xl p-8 transition-all max-h-[90vh] overflow-y-auto">
 
             <h2 class="text-3xl font-extrabold font-serif mb-6 text-black" x-text="mode === 'create' ? 'Tambah Baju Baru' : 'Edit Data Produk'"></h2>
 
@@ -182,6 +181,16 @@
                                 <textarea name="description" x-model="formData.description" rows="4" required placeholder="Tuliskan deskripsi baju, perkiraan ukuran (S/M/L), dan daftar aksesoris yang termasuk dalam paket."
                                     class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-[#7e9a3e] focus:ring-1 focus:ring-[#7e9a3e]"></textarea>
                             </div>
+                            <div class="mt-4">
+                                <label class="block text-gray-800 font-bold mb-2 ml-1">Ukuran</label>
+                                <input type="text" name="size_info" x-model="formData.size_info" placeholder="All Size"
+                                    class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-[#7e9a3e] focus:ring-1 focus:ring-[#7e9a3e]">
+                            </div>
+                            <div class="mt-4">
+                                <label class="block text-gray-800 font-bold mb-2 ml-1">Paket</label>
+                                <input type="text" name="included_items" x-model="formData.included_items" placeholder="-"
+                                    class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-[#7e9a3e] focus:ring-1 focus:ring-[#7e9a3e]">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -190,7 +199,7 @@
                     <button type="button" @click="closeModal()" class="flex-1 bg-gray-500 hover:bg-gray-600 text-white font-bold py-4 rounded-xl transition">
                         Batal
                     </button>
-                    <button type="submit" class="flex-1 bg-[#7e9a3e] hover:bg-[#5a6944] text-white font-bold py-4 rounded-xl transition shadow-lg">
+                    <button type="submit" class="flex-1 bg-[#7e9a3e] hover:bg-[#1f2b03] text-white font-bold py-4 rounded-xl transition shadow-lg">
                         Simpan Produk
                     </button>
                 </div>
@@ -213,7 +222,9 @@
                 price_per_3days: '',
                 category_id: '',
                 stock_total: '',
-                description: ''
+                description: '',
+                size_info: '',
+                included_items: ''
             },
 
             openModal(mode, product = null) {
@@ -225,7 +236,7 @@
                     this.formAction = "{{ route('admin.products.store') }}";
                     this.imagePreview = null;
                     this.formData = {
-                        id: null, name: '', price_per_3days: '', category_id: '', stock_total: '', description: ''
+                        id: null, name: '', price_per_3days: '', category_id: '', stock_total: '', description: '', size_info: 'All Size', included_items: '-'
                     };
                 } else {
                     // Isi Form untuk Edit
@@ -236,10 +247,12 @@
                         price_per_3days: product.price_per_3days,
                         category_id: product.category_id,
                         stock_total: product.stock_total,
-                        description: product.description
+                        description: product.description,
+                        size_info: product.size_info || 'All Size',
+                        included_items: product.included_items || '-'
                     };
                     // Set image preview dari storage jika ada
-                    this.imagePreview = product.image ? "{{ asset('images/') }}" + product.image : null;
+                    this.imagePreview = product.image ? "{{ asset('images') }}/" + product.image : null;
                 }
             },
 

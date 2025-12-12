@@ -1,4 +1,6 @@
-- [x] Add "max-h-[80vh] overflow-y-auto" to the modal's inner div class in resources/views/admin/orders.blade.php to enable vertical scrolling when content exceeds 80% of viewport height.
-- [x] Add getSuratPeminjamanAttribute accessor in app/Models/Rental.php to return $this->surat_peminjaman.
-- [x] Update the modal in resources/views/admin/orders.blade.php to conditionally display "Bukti Pembayaran" or "Surat Peminjaman" based on $order->user_type, showing the appropriate photo.
-- [x] Test the modal by checking orders for both umum and organisasi users to ensure photos display correctly.
+- [x] Fix slug generation in ProductController store method
+- [x] Fix slug generation in ProductController update method
+- [x] Add validation for size_info and included_items in store and update
+- [x] Process included_items as array from comma-separated string
+- [x] Set status based on stock_available in store and update (tersedia if >2, sisa if 1-2, habis if 0)
+- [x] Update seeder to set status correctly

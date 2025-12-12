@@ -311,6 +311,9 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($products as $item) {
+            $stockAvailable = $item['stock_total'];
+            $status = $stockAvailable > 2 ? 'tersedia' : ($stockAvailable > 0 ? 'sisa' : 'habis');
+
             Product::create([
                 'category_id'     => $item['category_id'],
                 'name'            => $item['name'],
@@ -319,7 +322,7 @@ class DatabaseSeeder extends Seeder
                 'price_per_3days' => $item['price_per_3days'],
                 'stock_total'     => $item['stock_total'],
                 'stock_available' => $item['stock_total'],
-                'status'          => $item['stock_total'],
+                'status'          => $status,
                 'size_info'       => $item['size_info'],
                 'included_items'  => $item['included_items'],
                 'image'           => $item['image'],

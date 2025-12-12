@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
 class ProductController extends Controller
@@ -60,16 +61,43 @@ class ProductController extends Controller
             'category_id' => 'required|exists:categories,id',
             'stock_total' => 'required|integer|min:0',
             'description' => 'required|string',
+            'size_info' => 'nullable|string|max:255',
+            'included_items' => 'nullable|string|max:500',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
         $data = $request->all();
 
+        // Ensure size_info is always included
+        $data['size_info'] = $request->input('size_info', '');
+
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('products', 'public');
+            $file = $request->file('image');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('images'), $filename);
+            $data['image'] = $filename;
         }
 
         $data['stock_available'] = $request->stock_total;
+
+        // Generate slug from name
+        $data['slug'] = Str::slug($request->name);
+
+        // Process included_items as array
+        if ($request->included_items) {
+            $data['included_items'] = array_map('trim', explode(',', $request->included_items));
+        } else {
+            $data['included_items'] = [];
+        }
+
+        // Set status based on stock_available
+        if ($data['stock_available'] > 2) {
+            $data['status'] = 'tersedia';
+        } elseif ($data['stock_available'] > 0) {
+            $data['status'] = 'sisa';
+        } else {
+            $data['status'] = 'habis';
+        }
 
         Product::create($data);
 
@@ -95,20 +123,44 @@ class ProductController extends Controller
             'category_id' => 'required|exists:categories,id',
             'stock_total' => 'required|integer|min:0',
             'description' => 'required|string',
+            'size_info' => 'nullable|string|max:255',
+            'included_items' => 'nullable|string|max:500',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
         $data = $request->all();
 
+        // Ensure size_info is always included
+        $data['size_info'] = $request->input('size_info', '');
+
         if ($request->hasFile('image')) {
             // Delete old image if exists
-            if ($product->image && Storage::disk('public')->exists($product->image)) {
-                Storage::disk('public')->delete($product->image);
+            if ($product->image && file_exists(public_path('images/' . $product->image))) {
+                unlink(public_path('images/' . $product->image));
             }
-            $data['image'] = $request->file('image')->store('products', 'public');
+            $file = $request->file('image');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('images'), $filename);
+            $data['image'] = $filename;
         }
 
         $data['stock_available'] = $request->stock_total;
+
+        // Process included_items as array
+        if ($request->included_items) {
+            $data['included_items'] = array_map('trim', explode(',', $request->included_items));
+        } else {
+            $data['included_items'] = [];
+        }
+
+        // Set status based on stock_available
+        if ($data['stock_available'] > 2) {
+            $data['status'] = 'tersedia';
+        } elseif ($data['stock_available'] > 0) {
+            $data['status'] = 'sisa';
+        } else {
+            $data['status'] = 'habis';
+        }
 
         $product->update($data);
 

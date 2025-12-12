@@ -10,12 +10,12 @@
 </div>
 
 <div class="flex flex-wrap items-center gap-4 mb-8" x-data="{ showNameDropdown: false, showDateDropdown: false }">
-    <a href="{{ route('admin.orders') }}" class="px-8 py-2 {{ !request('sort_by') ? 'bg-[#7e9a3e] text-white' : 'bg-white border-2 border-[#7e9a3e] text-gray-700' }} rounded-full font-bold shadow-sm hover:text-white hover:bg-[#5a6944] transition flex items-center justify-center min-w-[100px]">
+    <a href="{{ route('admin.orders') }}" class="px-8 py-2 {{ !request('sort_by') ? 'bg-[#7e9a3e] text-white' : 'bg-white border-2 border-[#7e9a3e] text-gray-700' }} rounded-full font-bold shadow-sm hover:text-white hover:bg-[#1f2b03] transition flex items-center justify-center min-w-[100px]">
         All
     </a>
 
     <div class="relative">
-        <button @click="showNameDropdown = !showNameDropdown; showDateDropdown = false" class="group px-6 py-2 {{ request('sort_by') === 'name' ? 'bg-[#7e9a3e] text-white' : 'bg-white border-2 border-[#7e9a3e] text-gray-700' }} rounded-full font-bold shadow-sm hover:bg-[#5a6944] hover:text-white transition flex items-center space-x-2 min-w-[140px] justify-between">
+        <button @click="showNameDropdown = !showNameDropdown; showDateDropdown = false" class="group px-6 py-2 {{ request('sort_by') === 'name' ? 'bg-[#7e9a3e] text-white' : 'bg-white border-2 border-[#7e9a3e] text-gray-700' }} rounded-full font-bold shadow-sm hover:bg-[#1f2b03] hover:text-white transition flex items-center space-x-2 min-w-[140px] justify-between">
             <span>Nama</span>
             <svg class="w-4 h-4 {{ request('sort_by') === 'name' ? 'text-white' : 'text-[#7e9a3e]' }} group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path>
@@ -28,7 +28,7 @@
     </div>
 
     <div class="relative">
-        <button @click="showDateDropdown = !showDateDropdown; showNameDropdown = false" class="group px-6 py-2 {{ request('sort_by') === 'date' ? 'bg-[#7e9a3e] text-white' : 'bg-white border-2 border-[#7e9a3e] text-gray-700' }} rounded-full font-bold shadow-sm hover:bg-[#5a6944] hover:text-white transition flex items-center space-x-2 min-w-[180px] justify-between">
+        <button @click="showDateDropdown = !showDateDropdown; showNameDropdown = false" class="group px-6 py-2 {{ request('sort_by') === 'date' ? 'bg-[#7e9a3e] text-white' : 'bg-white border-2 border-[#7e9a3e] text-gray-700' }} rounded-full font-bold shadow-sm hover:bg-[#1f2b03] hover:text-white transition flex items-center space-x-2 min-w-[180px] justify-between">
             <span>Tanggal Sewa</span>
             <svg class="w-4 h-4 {{ request('sort_by') === 'date' ? 'text-white' : 'text-[#7e9a3e]' }} group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path>
@@ -66,7 +66,7 @@
                     </td>
 
                     <td class="border border-gray-300 px-4 py-4 text-center">
-                        <button @click="showModal = true" class="inline-block bg-[#7e9a3e] text-white px-8 py-2 rounded-full text-xs font-bold hover:bg-[#5a6944] transition uppercase tracking-wide cursor-pointer">
+                        <button @click="showModal = true" class="inline-block bg-[#7e9a3e] text-white px-8 py-2 rounded-full text-xs font-bold hover:bg-[#1f2b03] transition uppercase tracking-wide cursor-pointer">
                             TINJAU
                         </button>
 
@@ -177,7 +177,6 @@
                                             </button>
                                         </form>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
