@@ -28,11 +28,9 @@ class CustomerController extends Controller
         $user->institution = $request->institution;
 
         if ($request->hasFile('photo')) {
-            // Delete old photo if exists
             if ($user->photo) {
                 Storage::delete($user->photo);
             }
-            // Store new photo
             $user->photo = $request->file('photo')->store('photos', 'public');
         }
 

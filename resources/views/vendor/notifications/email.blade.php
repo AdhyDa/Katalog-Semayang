@@ -4,7 +4,6 @@
 
 <x-mail::message>
 
-{{-- Custom Styles --}}
 <style>
     .button-custom {
         background-color: rgba(126, 154, 62, 1) !important;
@@ -19,7 +18,6 @@
     }
 </style>
 
-{{-- Greeting --}}
 @if (! empty($greeting))
 # {{ $greeting }}
 @else
@@ -30,16 +28,14 @@
 @endif
 @endif
 
-{{-- Intro Lines --}}
 @foreach ($introLines as $line)
 {{ $line }}
 
 @endforeach
 
-{{-- Action Button --}}
 @isset($actionText)
 @php
-    $color = 'custom'; // Gunakan custom class untuk warna tombol
+    $color = 'custom';
 @endphp
 
 <x-mail::button :url="$actionUrl" color="custom">
@@ -47,13 +43,11 @@
 </x-mail::button>
 @endisset
 
-{{-- Outro Lines --}}
 @foreach ($outroLines as $line)
 {{ $line }}
 
 @endforeach
 
-{{-- Salutation --}}
 @if (! empty($salutation))
 {{ $salutation }}
 @else
@@ -61,7 +55,6 @@
 {{ config('app.name') }}
 @endif
 
-{{-- Subcopy --}}
 @isset($actionText)
 <x-slot:subcopy>
 @lang(

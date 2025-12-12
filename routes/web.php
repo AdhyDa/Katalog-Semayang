@@ -77,6 +77,16 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         'destroy' => 'admin.products.destroy'
     ]);
 
+    Route::resource('payment-methods', App\Http\Controllers\Admin\PaymentMethodController::class)
+    ->names([
+        'index' => 'admin.payment-methods.index',
+        'create' => 'admin.payment-methods.create',
+        'store' => 'admin.payment-methods.store',
+        'edit' => 'admin.payment-methods.edit',
+        'update' => 'admin.payment-methods.update',
+        'destroy' => 'admin.payment-methods.destroy'
+    ]);
+
     Route::get('/transactions', [OrderController::class, 'transactions'])->name('admin.transactions');
     Route::post('/order/complete/{id}', [OrderController::class, 'complete'])->name('admin.order.complete');
 

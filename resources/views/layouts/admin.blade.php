@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=1280">
     <title>@yield('title', 'Admin - Katalog Semayang')</title>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -52,6 +52,14 @@
                         class="flex items-center gap-3 px-4 py-3 rounded-full transition-all duration-300 {{ request()->routeIs('admin.products*') ? 'bg-white text-[#7e9a3e] font-bold shadow-lg' : 'text-white hover:bg-[rgba(31,43,3,0.4)]' }}">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
                         <span>Manajemen Katalog</span>
+                    </a>
+
+                    <a href="{{ route('admin.payment-methods.index') }}"
+                        class="flex items-center gap-3 px-4 py-3 rounded-full transition-all duration-300 {{ request()->routeIs('admin.payment-methods*') ? 'bg-white text-[#7e9a3e] font-bold shadow-lg' : 'text-white hover:bg-[rgba(31,43,3,0.4)]' }}">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+                        </svg>
+                        <span>Metode Pembayaran</span>
                     </a>
 
                     <a href="{{ route('admin.customers') }}"

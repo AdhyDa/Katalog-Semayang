@@ -860,39 +860,6 @@ body {
     transform: translateY(-2px);
 }
 
-@media (max-width: 992px) {
-    .steps-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .step {
-        border-right: none;
-        border-bottom: 2px solid rgb(255, 255, 255);
-    }
-
-    .step:nth-child(odd) {
-        border-right: 2px solid rgb(255, 255, 255);
-    }
-
-    .step:last-child {
-        border-bottom: none;
-    }
-}
-
-@media (max-width: 576px) {
-    .steps-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .step {
-        border-right: none;
-    }
-
-    .image-content h2 {
-        font-size: 32px;
-    }
-}
-
 .keunggulan {
     padding: 60px 0;
     background-color: var(--bg-light);
@@ -1093,53 +1060,6 @@ body {
     display: block;
 }
 
-@media (max-width: 768px) {
-    .dokumentasi h2 {
-        font-size: 36px;
-        margin-bottom: 30px;
-    }
-
-    .dok-item {
-        width: 220px;
-        height: 280px;
-    }
-
-    .dok-item-land {
-        width: 480px;
-        height: 280px;
-    }
-
-    .marquee-content {
-        animation: marquee 25s linear infinite;
-        gap: 15px;
-    }
-}
-
-@media (max-width: 576px) {
-    .dokumentasi {
-        padding: 40px 0;
-    }
-
-    .dokumentasi h2 {
-        font-size: 28px;
-    }
-
-    .dok-item {
-        width: 180px;
-        height: 240px;
-    }
-
-    .dok-item-land {
-        width: 380px;
-        height: 580px;
-    }
-
-    .marquee-content {
-        animation: marquee 20s linear infinite;
-        gap: 10px;
-    }
-}
-
 .footer {
     background-color: rgba(126, 154, 62, 1);
     color: white;
@@ -1317,57 +1237,6 @@ body {
     margin: 0;
     font-size: 14px;
     font-family: 'Poppins';
-}
-
-@media (max-width: 992px) {
-    .footer-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 40px;
-    }
-
-    .footer-logo-section {
-        grid-column: 1 / -1;
-    }
-}
-
-@media (max-width: 768px) {
-    .footer {
-        padding: 40px 0 0;
-    }
-
-    .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-
-    .footer-logo {
-        width: 80px;
-        height: 80px;
-    }
-
-    .social-icons {
-        justify-content: flex-start;
-    }
-}
-
-@media (max-width: 576px) {
-    .footer-col h3,
-    .footer-col h4 {
-        font-size: 18px;
-    }
-
-    .footer-col p,
-    .footer-col ul li {
-        font-size: 14px;
-        font-family: 'Poppins';
-    }
-
-    .social-icon {
-        width: 40px;
-        height: 40px;
-        font-size: 18px;
-        font-family: 'Poppins';
-    }
 }
 
 .hero-content-index h1 {
@@ -1881,101 +1750,6 @@ body {
     cursor: not-allowed;
 }
 
-@media (max-width: 640px) {
-    .pagination-item {
-        width: 35px;
-        height: 35px;
-        font-size: 14px;
-        border-radius: 8px;
-        gap: 8px;
-    }
-}
-
-/* Responsive */
-@media (max-width: 992px) {
-    .filter-search-wrapper {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .filter-section {
-        justify-content: center;
-    }
-
-    .search-box {
-        max-width: 100%;
-    }
-}
-
-@media (max-width: 768px) {
-    .katalog-header h1 {
-        font-size: 36px;
-    }
-
-    .filter-tabs {
-        gap: 8px;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .tab-btn {
-        padding: 8px 20px;
-        font-size: 14px;
-    }
-
-    .products-grid {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 20px;
-    }
-
-    .product-image {
-        height: 250px;
-    }
-}
-
-@media (max-width: 576px) {
-    .katalog-header {
-        padding: 30px 0;
-    }
-
-    .katalog-header h1 {
-        font-size: 28px;
-        margin-bottom: 30px;
-    }
-
-    .filter-icon-btn {
-        width: 40px;
-        height: 40px;
-    }
-
-    .products-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 992px) {
-    .filter-dropdown {
-        left: 50%;
-        transform: translateX(-50%) translateY(-10px);
-        width: 90%;
-        max-width: 320px;
-    }
-
-    .filter-dropdown.active {
-        transform: translateX(-50%) translateY(0);
-    }
-}
-
-@media (max-width: 576px) {
-    .filter-dropdown {
-        min-width: 260px;
-    }
-
-    .filter-dropdown-content h4 {
-        font-size: 16px;
-    }
-}
-
 /* Cara Sewa Steps */
 .cara-sewa-steps {
     padding: 60px 0;
@@ -2231,23 +2005,6 @@ body {
 .cta-link:hover {
     color: #7BA544;
     text-decoration: none;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .cta-text {
-        font-size: 16px;
-    }
-}
-
-@media (max-width: 576px) {
-    .cta-section {
-        padding: 30px 0;
-    }
-
-    .cta-text {
-        font-size: 15px;
-    }
 }
 
 /* Siapa Kami Section */
@@ -2506,121 +2263,6 @@ body {
     color: var(--text-gray);
     margin-bottom: 20px;
     font-family: 'Montserrat';
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .hero {
-        min-height: 500px;
-    }
-
-    .hero-content h1 {
-        font-size: 36px;
-    }
-
-    .hero-content .subtitle {
-        font-size: 16px;
-    }
-
-    .nav-menu {
-        display: none;
-    }
-
-    .footer-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .koleksi-grid,
-    .steps-grid,
-    .keunggulan-grid,
-    .testimoni-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .katalog-header h1 {
-        font-size: 32px;
-    }
-
-    .filter-tabs {
-        gap: 10px;
-    }
-
-    .tab-btn {
-        padding: 8px 20px;
-        font-size: 14px;
-    }
-
-    .products-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .panduan-header h1 {
-        font-size: 32px;
-    }
-
-    .panduan-header .subtitle {
-        font-size: 16px;
-    }
-
-    .cara-sewa-steps .steps-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .ketentuan-box {
-        padding: 25px;
-    }
-
-    .ketentuan-box ol {
-        margin-left: 15px;
-    }
-
-    .faq-question {
-        padding: 20px;
-    }
-
-    .faq-question h3 {
-        font-size: 16px;
-    }
-
-    .faq-answer p {
-        padding: 0 20px 20px 20px;
-    }
-
-    .cta-section h2 {
-        font-size: 28px;
-    }
-
-    .tentang-hero h1 {
-        font-size: 32px;
-    }
-
-    .tentang-hero .subtitle {
-        font-size: 16px;
-    }
-
-    .siapa-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .siapa-image {
-        height: 300px;
-    }
-
-    .nilai-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .lokasi-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .map-container {
-        height: 350px;
-    }
-
-    .team-grid {
-        grid-template-columns: 1fr;
-    }
 }
 
 .auth {
@@ -3104,49 +2746,6 @@ body {
     height: 20px;
 }
 
-/* Responsive Design */
-@media (max-width: 1024px) {
-    .auth-container {
-        grid-template-columns: 1fr;
-    }
-
-    .auth-left {
-        display: none;
-    }
-
-    .auth-right {
-        padding: 20px;
-    }
-
-    .auth-form-wrapper {
-        padding: 40px 30px;
-    }
-}
-
-@media (max-width: 480px) {
-    .form-header h2 {
-        font-size: 26px;
-    }
-
-    .auth-form-wrapper {
-        padding: 30px 20px;
-    }
-
-    .form-control {
-        padding: 15px;
-    }
-
-    .btn-submit {
-        padding: 15px;
-    }
-
-    .form-options {
-        flex-direction: column;
-        gap: 10px;
-        align-items: flex-start;
-    }
-}
-
 /* Cart Section */
 .cart-section {
     padding: 60px 0;
@@ -3456,118 +3055,6 @@ body {
     font-weight: 500;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .hero {
-        min-height: 500px;
-    }
-
-    .hero-content h1 {
-        font-size: 36px;
-    }
-
-    .hero-content .subtitle {
-        font-size: 16px;
-    }
-
-    .nav-menu {
-        display: none;
-    }
-
-    .footer-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .koleksi-grid,
-    .steps-grid,
-    .keunggulan-grid,
-    .testimoni-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .katalog-header h1 {
-        font-size: 32px;
-    }
-
-    .filter-tabs {
-        gap: 10px;
-    }
-
-    .tab-btn {
-        padding: 8px 20px;
-        font-size: 14px;
-    }
-
-    .products-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .panduan-header h1 {
-        font-size: 32px;
-    }
-
-    .panduan-header .subtitle {
-        font-size: 16px;
-    }
-
-    .cara-sewa-steps .steps-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .ketentuan-box {
-        padding: 25px;
-    }
-
-    .ketentuan-box ol {
-        margin-left: 15px;
-    }
-
-    .faq-question {
-        padding: 20px;
-    }
-
-    .faq-question h3 {
-        font-size: 16px;
-    }
-
-    .faq-answer p {
-        padding: 0 20px 20px 20px;
-    }
-
-    .cta-section h2 {
-        font-size: 28px;
-    }
-
-    .cart-title {
-        font-size: 32px;
-    }
-
-    .cart-content {
-        grid-template-columns: 1fr;
-    }
-
-    .cart-item {
-        grid-template-columns: 80px 1fr;
-        gap: 15px;
-    }
-
-    .item-image {
-        width: 80px;
-        height: 80px;
-    }
-
-    .item-actions {
-        grid-column: 1 / -1;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .cart-summary {
-        position: static;
-    }
-}
-
 /* Product Detail Section */
 .product-detail-section {
     padding: 60px 0;
@@ -3843,31 +3330,6 @@ body {
     font-family: 'Mulish';
     cursor: not-allowed;
     width: 100%;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .product-detail-grid {
-        grid-template-columns: 1fr;
-        padding: 20px;
-    }
-
-    .product-title-detail {
-        font-size: 32px;
-    }
-
-    .product-price-detail {
-        font-size: 26px;
-    }
-
-    .thumbnail-images-detail {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 10px;
-    }
-
-    .action-buttons-detail {
-        flex-direction: column;
-    }
 }
 
 /* Checkout Page */
@@ -4518,39 +3980,6 @@ body {
     border-radius: 5px;
 }
 
-/* Responsive */
-@media (max-width: 992px) {
-    .checkout-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .checkout-summary {
-        position: static;
-    }
-
-    .user-type-selection {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 768px) {
-    .checkout-form-wrapper {
-        padding: 25px;
-    }
-
-    .checkout-header h1 {
-        font-size: 28px;
-    }
-
-    .payment-methods {
-        grid-template-columns: 1fr;
-    }
-
-    .summary-items {
-        max-height: none;
-    }
-}
-
 .success-section {
     padding: 100px 0;
     background: linear-gradient(135deg, rgba(126, 154, 62, 0.05) 0%, rgba(184, 212, 111, 0.05) 100%);
@@ -4722,26 +4151,4 @@ body {
 .success-actions .btn {
     padding: 12px 30px;
     font-weight: 600;
-}
-
-@media (max-width: 768px) {
-    .success-card {
-        padding: 40px 25px;
-    }
-
-    .success-card h1 {
-        font-size: 28px;
-    }
-
-    .order-number {
-        font-size: 24px;
-    }
-
-    .success-actions {
-        flex-direction: column;
-    }
-
-    .success-actions .btn {
-        width: 100%;
-    }
 }

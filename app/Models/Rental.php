@@ -48,6 +48,11 @@ class Rental extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function paymentMethod()
+    {
+        return $this->belongsTo(PaymentMethod::class, 'metode_pembayaran', 'code');
+    }
+
     // Get formatted order number
     public function getOrderNumberAttribute()
     {
