@@ -1,6 +1,0 @@
-- [x] Fix slug generation in ProductController store method
-- [x] Fix slug generation in ProductController update method
-- [x] Add validation for size_info and included_items in store and update
-- [x] Process included_items as array from comma-separated string
-- [x] Set status based on stock_available in store and update (tersedia if >2, sisa if 1-2, habis if 0)
-- [x] Update seeder to set status correctly
