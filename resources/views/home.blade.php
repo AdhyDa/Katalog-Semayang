@@ -73,7 +73,7 @@
             </div>
             <div class="koleksi-card">
                 <div class="card-image">
-                    <img src="{{ asset('images/placeholder.jpg') }}" alt="Aksesoris & Pelengkap">
+                    <img src="{{ asset('images/aksesoris.png') }}" alt="Aksesoris & Pelengkap">
                 </div>
                 <div class="card-content">
                     <h3>Aksesoris & Pelengkap</h3>
