@@ -58,6 +58,7 @@
                 <th class="border border-gray-300 px-4 py-4 text-center text-sm font-bold text-gray-600">Pemesan</th>
                 <th class="border border-gray-300 px-4 py-4 text-center text-sm font-bold text-gray-600">Tanggal Sewa</th>
                 <th class="border border-gray-300 px-4 py-4 text-center text-sm font-bold text-gray-600 w-1/4">Barang</th>
+                <th class="border border-gray-300 px-4 py-4 text-center text-sm font-bold text-gray-600">Metode Pembayaran</th>
                 <th class="border border-gray-300 px-4 py-4 text-center text-sm font-bold text-gray-600">Status</th>
                 <th class="border border-gray-300 px-4 py-4 text-center text-sm font-bold text-gray-600">Aksi</th>
             </tr>
@@ -204,7 +205,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="6" class="border border-gray-300 px-6 py-12 text-center text-gray-500">
+                    <td colspan="7" class="border border-gray-300 px-6 py-12 text-center text-gray-500">
                         <p class="text-lg font-semibold">Tidak ada transaksi ditemukan</p>
                     </td>
                 </tr>

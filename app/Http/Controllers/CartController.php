@@ -10,7 +10,6 @@ class CartController extends Controller
     public function index()
     {
         $cart = Session::get('cart', []);
-        // Add stock to cart items
         foreach ($cart as $id => &$item) {
             $item['stock'] = $this->getProductStock($id);
         }
@@ -65,7 +64,6 @@ class CartController extends Controller
         $cart[$id]['quantity'] = $quantity;
         Session::put('cart', $cart);
 
-        // selalu return JSON
         return response()->json([
             'success' => true,
             'quantity' => $quantity,

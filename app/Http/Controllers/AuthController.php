@@ -83,7 +83,6 @@ class AuthController extends Controller
         ]);
         $remember = $request->has('remember');
 
-        // Debug: Check if user exists
         $user = User::where('email', $credentials['email'])->first();
         if (!$user) {
             return back()->withErrors([
@@ -91,7 +90,6 @@ class AuthController extends Controller
             ])->onlyInput('email');
         }
 
-        // Debug: Check password
         if (!Hash::check($credentials['password'], $user->password)) {
             return back()->withErrors([
                 'email' => 'Password incorrect.',
@@ -117,7 +115,6 @@ class AuthController extends Controller
         return redirect()->route('home')->with('success', 'Anda telah logout.');
     }
 
-    // Forgot Password Methods
     public function showForgotPassword()
     {
         return view('auth.forgot-password');
@@ -133,7 +130,6 @@ class AuthController extends Controller
             'email.exists' => 'Email tidak terdaftar dalam sistem',
         ]);
 
-        // Send password reset link
         $status = Password::sendResetLink(
             $request->only('email')
         );

@@ -154,6 +154,17 @@
                                             </div>
 
                                             <div>
+                                                <label class="block text-gray-700 font-bold mb-1 ml-1">Metode Pembayaran</label>
+                                                <div class="w-full border-2 border-black rounded-xl px-4 py-3 font-medium text-gray-900">
+                                                    @if($order->payment_type === 'cod')
+                                                        COD
+                                                    @else
+                                                        {{ ucfirst($order->payment_type ?? 'Transfer') }}
+                                                    @endif
+                                                </div>
+                                            </div>
+
+                                            <div>
                                                 <label class="block text-gray-700 font-bold mb-1 ml-1">Catatan</label>
                                                 <div class="w-full border-2 border-black rounded-xl px-4 py-3 font-medium text-gray-900 min-h-[80px]">
                                                     {{ $order->notes ?? '-' }}

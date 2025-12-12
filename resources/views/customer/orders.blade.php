@@ -3,7 +3,6 @@
 @section('title', 'Pesanan Saya')
 
 @section('content')
-    {{-- Judul Halaman --}}
     <h2 class="text-4xl font-black mb-8 text-black" style="font-family: 'Merriweather', serif;">
         Pesanan Saya
     </h2>
@@ -11,10 +10,7 @@
     @if($orders->count() > 0)
         <div class="flex flex-col gap-8">
             @foreach($orders as $order)
-                {{-- CARD ITEM --}}
                 <div class="bg-white border-[3px] border-black rounded-[2rem] p-6 relative flex flex-col md:flex-row gap-6">
-
-                    {{-- 1. Gambar Produk --}}
                     <div class="flex-shrink-0">
                         @php
                             $firstItem = $order->orderItems->first();
@@ -25,7 +21,6 @@
                             <img src="{{ $productImage }}" alt="Produk"
                                 class="w-full md:w-40 h-40 object-cover rounded-2xl border border-gray-200">
                         @else
-                            {{-- Placeholder jika tidak ada gambar --}}
                             <div class="w-full md:w-40 h-40 bg-blue-50 rounded-2xl border border-gray-200 flex items-center justify-center relative overflow-hidden">
                                 <div class="absolute bottom-0 w-full h-12 bg-[#8da560]"></div>
                                 <div class="w-10 h-10 bg-white/50 rounded-full absolute top-4 left-4"></div>
@@ -33,16 +28,13 @@
                         @endif
                     </div>
 
-                    {{-- 2. Detail Info --}}
                     <div class="flex-grow flex flex-col justify-between py-1">
                         <div>
-                            {{-- Baris Atas: ID & Status --}}
                             <div class="flex flex-wrap items-start justify-between mb-2">
                                 <p class="text-xs font-bold text-gray-500 uppercase tracking-wider">
                                     ID: #{{ $order->order_number }} | {{ $order->pickup_date->format('d M Y') }}
                                 </p>
 
-                                {{-- Status Label with Dot --}}
                                 @php
                                     $statusData = match($order->status) {
                                         'pending' => ['color' => 'bg-yellow-400', 'text' => 'text-yellow-600', 'label' => 'Menunggu Konfirmasi'],
@@ -58,7 +50,6 @@
                                 </div>
                             </div>
 
-                            {{-- Nama Produk --}}
                             <h3 class="text-2xl font-bold text-black font-serif leading-tight mb-1">
                                 {{ $firstItem->product->name ?? 'Produk Tidak Dikenal' }}
                             </h3>
@@ -66,14 +57,12 @@
                                 <p class="text-sm text-gray-500 font-medium">+ {{ $order->orderItems->count() - 1 }} item lainnya</p>
                             @endif
 
-                            {{-- Durasi --}}
                             <p class="text-sm text-gray-500 mt-2">
                                 Durasi: <span class="text-black font-semibold">{{ $order->duration_days }} Hari</span>
                                 ({{ $order->pickup_date->format('d M') }} - {{ $order->return_date->format('d M') }})
                             </p>
                         </div>
 
-                        {{-- Harga Total --}}
                         <div class="flex justify-between items-end mt-4 md:mt-0 border-t md:border-t-0 border-dashed pt-3 md:pt-0">
                             <span class="text-xs font-bold text-gray-600">Total Harga</span>
                             <span class="text-lg font-extrabold text-black">Rp {{ number_format($order->total_amount, 0, ',', '.') }}</span>
@@ -82,7 +71,6 @@
 
                 </div>
 
-                {{-- TOMBOL ACTION DI LUAR CARD (Biar lebar penuh seperti desain) --}}
                 <a href="{{ route('customer.order.detail', $order->id) }}"
                     class="block w-full py-3 -mt-6 rounded-full border-2 border-[#7e9a3e] text-[#7e9a3e] text-center font-bold hover:bg-[#7e9a3e] hover:text-white transition-colors duration-200">
                     Lihat Detail
@@ -91,13 +79,11 @@
             @endforeach
         </div>
 
-        {{-- Pagination --}}
         <div class="mt-10">
             {{ $orders->links() }}
         </div>
 
     @else
-        {{-- Tampilan Kosong --}}
         <div class="flex flex-col items-center justify-center h-[50vh] text-center">
             <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mb-6">
                 <svg class="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
