@@ -45,7 +45,7 @@
         <div class="koleksi-grid">
             <div class="koleksi-card">
                 <div class="card-image">
-                    <img src="{{ asset('images/koleksi-pria.jpg') }}" alt="Koleksi Pria">
+                    <img src="{{ asset('images/koleksi-pria.png') }}" alt="Koleksi Pria">
                 </div>
                 <div class="card-content">
                     <h3>Koleksi Pria</h3>
@@ -59,7 +59,7 @@
             </div>
             <div class="koleksi-card">
                 <div class="card-image">
-                    <img src="{{ asset('images/koleksi-wanita.jpg') }}" alt="Koleksi Wanita">
+                    <img src="{{ asset('images/koleksi-wanita.png') }}" alt="Koleksi Wanita">
                 </div>
                 <div class="card-content">
                     <h3>Koleksi Wanita</h3>
@@ -73,7 +73,7 @@
             </div>
             <div class="koleksi-card">
                 <div class="card-image">
-                    <img src="{{ asset('images/aksesoris.jpg') }}" alt="Aksesoris & Pelengkap">
+                    <img src="{{ asset('images/placeholder.jpg') }}" alt="Aksesoris & Pelengkap">
                 </div>
                 <div class="card-content">
                     <h3>Aksesoris & Pelengkap</h3>
@@ -104,7 +104,7 @@
         <div class="steps-grid">
             <div class="step">
                 <div class="step-image">
-                    <img src="{{ asset('images/step-1.jpg') }}" alt="Pilih Baju">
+                    <img src="{{ asset('images/step/step-1.jpg') }}" alt="Pilih Baju">
                 </div>
                 <span class="step-title">1. Pilih Baju</span>
                 <p class="step-description">Cari dan pilih baju favoritmu di katalog.</p>
@@ -112,7 +112,7 @@
 
             <div class="step">
                 <div class="step-image">
-                    <img src="{{ asset('images/step-2.jpg') }}" alt="Mengisi Form">
+                    <img src="{{ asset('images/step/step-2.jpg') }}" alt="Mengisi Form">
                 </div>
                 <span class="step-title">2. Mengisi Form</span>
                 <p class="step-description">Isi formulir pesanan dan tentukan tanggal sewa.</p>
@@ -120,7 +120,7 @@
 
             <div class="step">
                 <div class="step-image">
-                    <img src="{{ asset('images/step-3.png') }}" alt="Melakukan Pembayaran">
+                    <img src="{{ asset('images/step/step-3.png') }}" alt="Melakukan Pembayaran">
                 </div>
                 <span class="step-title">3. Melakukan Pembayaran</span>
                 <p class="step-description">Lakukan pembayaran sesuai dengan metode yang tersedia</p>
@@ -128,7 +128,7 @@
 
             <div class="step">
                 <div class="step-image">
-                    <img src="{{ asset('images/step-4.jpg') }}" alt="Mengambil Baju">
+                    <img src="{{ asset('images/step/step-4.jpg') }}" alt="Mengambil Baju">
                 </div>
                 <span class="step-title">4. Mengambil Baju</span>
                 <p class="step-description">Ambil bajumu di tempat kami</p>
@@ -196,47 +196,47 @@
     <div class="marquee-container">
         <div class="marquee-content">
             <div class="dok-item">
-                <img src="{{ asset('images/doku-1.jpg') }}" alt="Dokumentasi 1">
+                <img src="{{ asset('images/dokumentasi/doku-1.jpg') }}" alt="Dokumentasi 1">
             </div>
             <div class="dok-item">
-                <img src="{{ asset('images/doku-2.jpg') }}" alt="Dokumentasi 2">
+                <img src="{{ asset('images/dokumentasi/doku-2.jpg') }}" alt="Dokumentasi 2">
             </div>
             <div class="dok-item">
-                <img src="{{ asset('images/doku-3.jpg') }}" alt="Dokumentasi 3">
+                <img src="{{ asset('images/dokumentasi/doku-3.jpg') }}" alt="Dokumentasi 3">
             </div>
             <div class="dok-item">
-                <img src="{{ asset('images/doku-4.jpg') }}" alt="Dokumentasi 4">
+                <img src="{{ asset('images/dokumentasi/doku-4.jpg') }}" alt="Dokumentasi 4">
             </div>
             <div class="dok-item-land">
-                <img src="{{ asset('images/doku-5.jpeg') }}" alt="Dokumentasi 5">
+                <img src="{{ asset('images/dokumentasi/doku-5.jpeg') }}" alt="Dokumentasi 5">
             </div>
             <div class="dok-item-land">
-                <img src="{{ asset('images/doku-6.jpeg') }}" alt="Dokumentasi 6">
+                <img src="{{ asset('images/dokumentasi/doku-6.jpeg') }}" alt="Dokumentasi 6">
             </div>
             <div class="dok-item">
-                <img src="{{ asset('images/doku-7.jpg') }}" alt="Dokumentasi 7">
+                <img src="{{ asset('images/dokumentasi/doku-7.jpg') }}" alt="Dokumentasi 7">
             </div>
 
             <div class="dok-item">
-                <img src="{{ asset('images/doku-1.jpg') }}" alt="Dokumentasi 1">
+                <img src="{{ asset('images/dokumentasi/doku-1.jpg') }}" alt="Dokumentasi 1">
             </div>
             <div class="dok-item">
-                <img src="{{ asset('images/doku-2.jpg') }}" alt="Dokumentasi 2">
+                <img src="{{ asset('images/dokumentasi/doku-2.jpg') }}" alt="Dokumentasi 2">
             </div>
             <div class="dok-item">
-                <img src="{{ asset('images/doku-3.jpg') }}" alt="Dokumentasi 3">
+                <img src="{{ asset('images/dokumentasi/doku-3.jpg') }}" alt="Dokumentasi 3">
             </div>
             <div class="dok-item">
-                <img src="{{ asset('images/doku-4.jpg') }}" alt="Dokumentasi 4">
+                <img src="{{ asset('images/dokumentasi/doku-4.jpg') }}" alt="Dokumentasi 4">
             </div>
             <div class="dok-item-land">
-                <img src="{{ asset('images/doku-5.jpeg') }}" alt="Dokumentasi 5">
+                <img src="{{ asset('images/dokumentasi/doku-5.jpeg') }}" alt="Dokumentasi 5">
             </div>
             <div class="dok-item-land">
-                <img src="{{ asset('images/doku-6.jpeg') }}" alt="Dokumentasi 6">
+                <img src="{{ asset('images/dokumentasi/doku-6.jpeg') }}" alt="Dokumentasi 6">
             </div>
             <div class="dok-item">
-                <img src="{{ asset('images/doku-7.jpg') }}" alt="Dokumentasi 7">
+                <img src="{{ asset('images/dokumentasi/doku-7.jpg') }}" alt="Dokumentasi 7">
             </div>
         </div>
     </div>
@@ -248,15 +248,27 @@
         <div class="testimoni-grid">
             <div class="testimoni-card">
                 <p>"Bajunya bersih dan bagus banget! Pelayanannya ramah. Puas banget sewa di sini."</p>
-                <strong>- Andini, Samarinda.</strong>
+                <strong>- Evan, Mahasiswa</strong>
             </div>
             <div class="testimoni-card">
-                <p>"Bajunya bersih dan bagus banget! Pelayanannya ramah. Puas banget sewa di sini."</p>
-                <strong>- Andini, Samarinda.</strong>
+                <p>"Harganya pas banget di kantong mahasiswa! Awalnya ragu, tapi pas lihat barangnya ternyata bersih dan wangi banget. Makasih ya Kak, pentas kami jadi lancar."</p>
+                <strong>- Rina, Mahasiswi</strong>
             </div>
             <div class="testimoni-card">
-                <p>"Bajunya bersih dan bagus banget! Pelayanannya ramah. Puas banget sewa di sini."</p>
-                <strong>- Andini, Samarinda.</strong>
+                <p>"Adminnya fast response dan ramah banget pas ditanya-tanya soal ukuran. Proses sewanya juga sat-set gak ribet. Suka banget sama pelayanan kekeluargaannya!"</p>
+                <strong>- Budi Santoso, Samarinda</strong>
+            </div>
+            <div class="testimoni-card">
+                <p>"Suka banget sama detail manik-manik baju Dayaknya, masih utuh dan kinclong. Kelihatan mewah pas dipakai di panggung. Bakal langganan terus sih ini."</p>
+                <strong>- Citra</strong>
+            </div>
+            <div class="testimoni-card">
+                <p>"Nyewa baju adat di sini lengkap banget aksesorisnya, dari topi sampai mandau replikanya ada. Kondisi barang terawat, jadi makin pede pas tampil."</p>
+                <strong>- Dika, Balikpapan</strong>
+            </div>
+            <div class="testimoni-card">
+                <p>"Penyelamat banget pas butuh kostum dadakan buat acara kantor. Untung stoknya ready dan kondisinya siap pakai (sudah di-laundry). Sukses terus Katalog Semayang!"</p>
+                <strong>- Ratna, Pegawai Swasta</strong>
             </div>
         </div>
     </div>
