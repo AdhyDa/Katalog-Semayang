@@ -21,7 +21,7 @@
             <div class="step-card">
                 <div class="step-number">1</div>
                     <div class="cara-image">
-                        <img src="{{ asset('images/step-1.jpg') }}" alt="Pilih Baju">
+                        <img src="{{ asset('images/step/step-1.jpg') }}" alt="Pilih Baju">
                     </div>
                 <h3>Pilih Baju</h3>
                 <p>Cari dan pilih baju favoritmu di katalog.</p>
@@ -30,7 +30,7 @@
             <div class="step-card">
                 <div class="step-number">2</div>
                     <div class="cara-image">
-                        <img src="{{ asset('images/step-2.jpg') }}" alt="Mengisi Form">
+                        <img src="{{ asset('images/step/step-2.jpg') }}" alt="Mengisi Form">
                     </div>
                 <h3>Mengisi Form</h3>
                 <p>Isi formulir pesanan dan tentukan tanggal sewa.</p>
@@ -39,7 +39,7 @@
             <div class="step-card">
                 <div class="step-number">3</div>
                     <div class="cara-image">
-                        <img src="{{ asset('images/step-3.png') }}" alt="Pembayaran">
+                        <img src="{{ asset('images/step/step-3.png') }}" alt="Pembayaran">
                     </div>
                 <h3>Melakukan Pembayaran</h3>
                 <p>Lakukan pembayaran sesuai dengan metode yang tersedia</p>
@@ -48,7 +48,7 @@
             <div class="step-card">
                 <div class="step-number">4</div>
                     <div class="cara-image">
-                        <img src="{{ asset('images/step-4.jpg') }}" alt="Mengambil Baju">
+                        <img src="{{ asset('images/step/step-4.jpg') }}" alt="Mengambil Baju">
                     </div>
                 <h3>Mengambil Baju</h3>
                 <p>Ambil bajumu di tempat kami</p>

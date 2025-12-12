@@ -21,7 +21,7 @@
     <div class="container">
         <div class="siapa-grid">
             <div class="siapa-image">
-                <img src="{{ asset('images/doku-1.jpg') }}" alt="AMKT Semayang">
+                <img src="{{ asset('images/dokumentasi/doku-1.jpg') }}" alt="AMKT Semayang">
             </div>
             <div class="siapa-content">
                 <h2>Siapa Kami?</h2>

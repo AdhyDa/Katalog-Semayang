@@ -96,16 +96,6 @@ class DatabaseSeeder extends Seeder
                 'stock_total' => 5,
                 'image' => 'baju-wanita-biru.png',
             ],
-            [
-                'category_id' => 2,
-                'name' => 'Baju Jepen Ungu',
-                'price_per_3days' => 75000,
-                'size_info' => 'All Size',
-                'included_items' => '-',
-                'description' => 'Busana tari Jepen berwarna ungu yang anggun, dirancang khusus untuk menampilkan keindahan gerak tari Melayu Kutai. Warna ungunya yang khas memberikan sentuhan kemewahan dan keunikan tersendiri.',
-                'stock_total' => 3,
-                'image' => '',
-            ],
 
             [
                 'category_id' => 1,
@@ -166,7 +156,7 @@ class DatabaseSeeder extends Seeder
                 'included_items' => '-',
                 'description' => 'Hiasan kepala sederhana namun cantik untuk melengkapi busana adat wanita Anda sehari-hari atau acara santai. Menambah sentuhan etnik yang manis tanpa terlihat berlebihan.',
                 'stock_total' => 15,
-                'image' => '',
+                'image' => 'mahkota-biasa-wanita.jpeg',
             ],
             [
                 'category_id' => 3,
@@ -311,6 +301,9 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($products as $item) {
+            $stockAvailable = $item['stock_total'];
+            $status = $stockAvailable > 2 ? 'tersedia' : ($stockAvailable > 0 ? 'sisa' : 'habis');
+
             Product::create([
                 'category_id'     => $item['category_id'],
                 'name'            => $item['name'],
@@ -319,7 +312,7 @@ class DatabaseSeeder extends Seeder
                 'price_per_3days' => $item['price_per_3days'],
                 'stock_total'     => $item['stock_total'],
                 'stock_available' => $item['stock_total'],
-                'status'          => $item['stock_total'],
+                'status'          => $status,
                 'size_info'       => $item['size_info'],
                 'included_items'  => $item['included_items'],
                 'image'           => $item['image'],

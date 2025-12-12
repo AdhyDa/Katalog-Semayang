@@ -87,7 +87,7 @@
 
                     <td class="border border-gray-300 px-4 py-4 text-center">
                         @if($order->status == 'active')
-                            <button @click="showReturnModal = true" class="bg-[#7e9a3e] hover:bg-[#5a6944] text-white px-4 py-2 rounded-md text-xs font-bold transition">
+                            <button @click="showReturnModal = true" class="bg-[#7e9a3e] hover:bg-[#1f2b03] text-white px-4 py-2 rounded-md text-xs font-bold transition">
                                 Terima Pengembalian
                             </button>
 
@@ -186,7 +186,7 @@
                                                 <button type="button" @click="showReturnModal = false" class="flex-1 bg-gray-500 hover:bg-gray-600 text-white py-4 rounded-xl font-bold text-lg transition">
                                                     Batal
                                                 </button>
-                                                <button type="submit" class="flex-1 bg-[#7e9a3e] hover:bg-[#5a6944] text-white py-4 rounded-xl font-bold text-lg transition">
+                                                <button type="submit" class="flex-1 bg-[#7e9a3e] hover:bg-[#1f2b03] text-white py-4 rounded-xl font-bold text-lg transition">
                                                     Selesaikan Transaksi
                                                 </button>
                                             </div>
