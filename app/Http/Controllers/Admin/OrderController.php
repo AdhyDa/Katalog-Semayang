@@ -16,6 +16,17 @@ class OrderController extends Controller
             $query->where('nama_lengkap', 'like', '%' . $request->search . '%');
         }
 
+        if ($request->has('sort_by')) {
+            $sortBy = $request->sort_by;
+            $sortOrder = $request->sort_order ?? 'asc';
+
+            if ($sortBy === 'name') {
+                $query->orderBy('nama_lengkap', $sortOrder);
+            } elseif ($sortBy === 'date') {
+                $query->orderBy('tanggal_ambil', $sortOrder);
+            }
+        }
+
         $orders = $query->paginate(10);
 
         return view('admin.orders', compact('orders'));

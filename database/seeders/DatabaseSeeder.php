@@ -328,7 +328,7 @@ class DatabaseSeeder extends Seeder
 
         $this->command->info('Database seeded successfully!');
         $this->command->info('Admin credentials:');
-        $this->command->info('Email: admin@semayang.com');
-        $this->command->info('Password: password');
+        $this->command->info('Email: adhyaksa209@gmail.com');
+        $this->command->info('Password: akuAdmin');
     }
 }

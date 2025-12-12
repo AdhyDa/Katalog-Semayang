@@ -13,19 +13,19 @@
     <div class="flex flex-col md:flex-row justify-between items-center gap-4">
         <div class="flex flex-wrap gap-3">
             <a href="{{ route('admin.transactions') }}"
-                class="px-6 py-2 rounded-full font-bold text-sm transition shadow-sm {{ !request('status') || request('status') == 'All' ? 'bg-[#718355] text-white' : 'bg-white text-gray-600 border-2 border-[#718355] hover:bg-gray-50' }}">
+                class="px-6 py-2 rounded-full font-bold text-sm transition shadow-sm {{ !request('status') || request('status') == 'All' ? 'bg-[#7e9a3e] text-white' : 'bg-white text-gray-600 border-2 border-[#7e9a3e] hover:bg-gray-50' }}">
                 All
             </a>
             <a href="{{ route('admin.transactions', ['status' => 'active']) }}"
-                class="px-6 py-2 rounded-full font-bold text-sm transition shadow-sm {{ request('status') == 'active' ? 'bg-[#718355] text-white' : 'bg-white text-gray-600 border-2 border-[#718355] hover:bg-gray-50' }}">
+                class="px-6 py-2 rounded-full font-bold text-sm transition shadow-sm {{ request('status') == 'active' ? 'bg-[#7e9a3e] text-white' : 'bg-white text-gray-600 border-2 border-[#7e9a3e] hover:bg-gray-50' }}">
                 Sedang Disewa
             </a>
             <a href="{{ route('admin.transactions', ['status' => 'completed']) }}"
-                class="px-6 py-2 rounded-full font-bold text-sm transition shadow-sm {{ request('status') == 'completed' ? 'bg-[#718355] text-white' : 'bg-white text-gray-600 border-2 border-[#718355] hover:bg-gray-50' }}">
+                class="px-6 py-2 rounded-full font-bold text-sm transition shadow-sm {{ request('status') == 'completed' ? 'bg-[#7e9a3e] text-white' : 'bg-white text-gray-600 border-2 border-[#7e9a3e] hover:bg-gray-50' }}">
                 Selesai
             </a>
             <a href="{{ route('admin.transactions', ['status' => 'cancelled']) }}"
-                class="px-6 py-2 rounded-full font-bold text-sm transition shadow-sm {{ request('status') == 'cancelled' ? 'bg-[#718355] text-white' : 'bg-white text-gray-600 border-2 border-[#718355] hover:bg-gray-50' }}">
+                class="px-6 py-2 rounded-full font-bold text-sm transition shadow-sm {{ request('status') == 'cancelled' ? 'bg-[#7e9a3e] text-white' : 'bg-white text-gray-600 border-2 border-[#7e9a3e] hover:bg-gray-50' }}">
                 Batal
             </a>
         </div>
@@ -34,8 +34,8 @@
             @if(request('status')) <input type="hidden" name="status" value="{{ request('status') }}"> @endif
             <div class="relative">
                 <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari nama baju adat"
-                        class="w-full md:w-80 pl-4 pr-10 py-2 rounded-full border-2 border-[#718355] focus:outline-none focus:ring-2 focus:ring-[#718355] text-gray-600">
-                <button type="submit" class="absolute right-3 top-2.5 text-[#718355]">
+                        class="w-full md:w-80 pl-4 pr-10 py-2 rounded-full border-2 border-[#7e9a3e] focus:outline-none focus:ring-2 focus:ring-[#7e9a3e] text-gray-600">
+                <button type="submit" class="absolute right-3 top-2.5 text-[#7e9a3e]">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
                 </button>
             </div>
@@ -43,7 +43,7 @@
     </div>
 
     <div class="flex justify-start">
-        <button class="flex items-center space-x-2 px-6 py-2 bg-white border-2 border-[#718355] rounded-full text-gray-700 font-bold text-sm shadow-sm">
+        <button class="flex items-center space-x-2 px-6 py-2 bg-white border-2 border-[#7e9a3e] rounded-full text-gray-700 font-bold text-sm shadow-sm">
             <span>22 Nov 2025 - 24 Nov 2025</span>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
         </button>
@@ -79,7 +79,7 @@
                         @else - @endif
                     </td>
                     <td class="border border-gray-300 px-4 py-4 text-center text-sm font-bold">
-                        @if($order->status == 'active') <span class="text-[#718355]">Sedang Disewa</span>
+                        @if($order->status == 'active') <span class="text-[#7e9a3e]">Sedang Disewa</span>
                         @elseif($order->status == 'completed') <span class="text-blue-500">Selesai</span>
                         @elseif($order->status == 'cancelled') <span class="text-red-500">Batal</span>
                         @else <span class="text-yellow-600">{{ ucfirst($order->status) }}</span> @endif
@@ -87,7 +87,7 @@
 
                     <td class="border border-gray-300 px-4 py-4 text-center">
                         @if($order->status == 'active')
-                            <button @click="showReturnModal = true" class="bg-[#718355] hover:bg-[#5a6944] text-white px-4 py-2 rounded-md text-xs font-bold transition">
+                            <button @click="showReturnModal = true" class="bg-[#7e9a3e] hover:bg-[#5a6944] text-white px-4 py-2 rounded-md text-xs font-bold transition">
                                 Terima Pengembalian
                             </button>
 
@@ -114,13 +114,13 @@
                                                     <div class="space-y-4">
                                                         <div>
                                                             <label class="block text-gray-700 font-medium mb-1 ml-1 text-sm">Nama Lengkap</label>
-                                                            <div class="bg-[#B6C99B] text-gray-800 px-4 py-3 rounded-xl font-bold border border-[#718355]/30">
+                                                            <div class="bg-[#B6C99B] text-gray-800 px-4 py-3 rounded-xl font-bold border border-[#7e9a3e]/30">
                                                                 {{ $order->customer_name }}
                                                             </div>
                                                         </div>
                                                         <div>
                                                             <label class="block text-gray-700 font-medium mb-1 ml-1 text-sm">ID Pesanan</label>
-                                                            <div class="bg-[#B6C99B] text-gray-800 px-4 py-3 rounded-xl font-bold border border-[#718355]/30">
+                                                            <div class="bg-[#B6C99B] text-gray-800 px-4 py-3 rounded-xl font-bold border border-[#7e9a3e]/30">
                                                                 #{{ $order->order_number }}
                                                             </div>
                                                         </div>
@@ -129,15 +129,15 @@
                                                     <div class="space-y-4">
                                                         <div>
                                                             <label class="block text-gray-700 font-medium mb-1 ml-1 text-sm">Jadwal Kembali</label>
-                                                            <div class="bg-[#B6C99B] text-gray-800 px-4 py-3 rounded-xl font-bold border border-[#718355]/30">
+                                                            <div class="bg-[#B6C99B] text-gray-800 px-4 py-3 rounded-xl font-bold border border-[#7e9a3e]/30">
                                                                 {{ $order->return_date->format('d F Y') }}
                                                             </div>
                                                         </div>
                                                         <div>
                                                             <label class="block text-gray-700 font-medium mb-1 ml-1 text-sm">Dikembalikan pada</label>
                                                             <input type="date" name="actual_return_date" value="{{ date('Y-m-d') }}"
-                                                                    class="w-full bg-white border-2 border-black text-gray-900 px-4 py-3 rounded-xl font-bold focus:ring-[#718355] focus:border-[#718355]">
-                                                            <div class="text-right text-[#718355] text-sm font-bold mt-1">Status: Tepat Waktu</div>
+                                                                    class="w-full bg-white border-2 border-black text-gray-900 px-4 py-3 rounded-xl font-bold focus:ring-[#7e9a3e] focus:border-[#7e9a3e]">
+                                                            <div class="text-right text-[#7e9a3e] text-sm font-bold mt-1">Status: Tepat Waktu</div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -177,7 +177,7 @@
 
                                             <div class="mb-8">
                                                 <label class="flex items-center space-x-3 cursor-pointer">
-                                                    <input type="checkbox" required class="w-6 h-6 rounded border-gray-300 text-[#718355] focus:ring-[#718355]">
+                                                    <input type="checkbox" required class="w-6 h-6 rounded border-gray-300 text-[#7e9a3e] focus:ring-[#7e9a3e]">
                                                     <span class="text-sm font-bold text-gray-800">Saya sudah menerima uang & mengembalikan KTP Penyewa.</span>
                                                 </label>
                                             </div>
@@ -186,7 +186,7 @@
                                                 <button type="button" @click="showReturnModal = false" class="flex-1 bg-gray-500 hover:bg-gray-600 text-white py-4 rounded-xl font-bold text-lg transition">
                                                     Batal
                                                 </button>
-                                                <button type="submit" class="flex-1 bg-[#718355] hover:bg-[#5a6944] text-white py-4 rounded-xl font-bold text-lg transition">
+                                                <button type="submit" class="flex-1 bg-[#7e9a3e] hover:bg-[#5a6944] text-white py-4 rounded-xl font-bold text-lg transition">
                                                     Selesaikan Transaksi
                                                 </button>
                                             </div>

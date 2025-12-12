@@ -9,32 +9,35 @@
     </h1>
 </div>
 
-<div class="flex flex-wrap items-center gap-4 mb-8">
-    <a href="{{ route('admin.orders') }}" class="px-8 py-2 bg-[#718355] text-white rounded-full font-bold shadow-sm hover:bg-[#5a6944] transition flex items-center justify-center min-w-[100px]">
+<div class="flex flex-wrap items-center gap-4 mb-8" x-data="{ showNameDropdown: false, showDateDropdown: false }">
+    <a href="{{ route('admin.orders') }}" class="px-8 py-2 {{ !request('sort_by') ? 'bg-[#7e9a3e] text-white' : 'bg-white border-2 border-[#7e9a3e] text-gray-700' }} rounded-full font-bold shadow-sm hover:text-white hover:bg-[#5a6944] transition flex items-center justify-center min-w-[100px]">
         All
     </a>
 
-    <div class="relative group">
-        <button class="px-6 py-2 bg-white border-2 border-[#718355] text-gray-700 rounded-full font-bold shadow-sm hover:bg-gray-50 transition flex items-center space-x-2 min-w-[140px] justify-between">
+    <div class="relative">
+        <button @click="showNameDropdown = !showNameDropdown; showDateDropdown = false" class="group px-6 py-2 {{ request('sort_by') === 'name' ? 'bg-[#7e9a3e] text-white' : 'bg-white border-2 border-[#7e9a3e] text-gray-700' }} rounded-full font-bold shadow-sm hover:bg-[#5a6944] hover:text-white transition flex items-center space-x-2 min-w-[140px] justify-between">
             <span>Nama</span>
-            <svg class="w-4 h-4 text-[#718355]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-4 h-4 {{ request('sort_by') === 'name' ? 'text-white' : 'text-[#7e9a3e]' }} group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path>
             </svg>
         </button>
-        <div class="absolute top-full left-0 mt-2 w-64 bg-white rounded-xl shadow-xl border border-gray-200 p-3 hidden group-hover:block z-10">
-            <form action="{{ route('admin.orders') }}" method="GET">
-                <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari nama pemesan..." class="w-full border-gray-300 rounded-lg text-sm focus:border-[#718355] focus:ring-[#718355]">
-            </form>
+        <div x-show="showNameDropdown" @click.away="showNameDropdown = false" class="absolute top-full left-0 mt-2 w-32 bg-white rounded-xl shadow-xl border border-gray-200 p-2 z-10">
+            <a href="{{ route('admin.orders', ['sort_by' => 'name', 'sort_order' => 'asc']) }}" @click="showNameDropdown = false" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[#1f2b03] hover:text-white rounded-lg {{ request('sort_by') === 'name' && request('sort_order') === 'asc' ? 'bg-[#7e9a3e] text-white' : '' }}">A-Z</a>
+            <a href="{{ route('admin.orders', ['sort_by' => 'name', 'sort_order' => 'desc']) }}" @click="showNameDropdown = false" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[#1f2b03] hover:text-white rounded-lg {{ request('sort_by') === 'name' && request('sort_order') === 'desc' ? 'bg-[#7e9a3e] text-white' : '' }}">Z-A</a>
         </div>
     </div>
 
-    <div class="relative group">
-        <button class="px-6 py-2 bg-white border-2 border-[#718355] text-gray-700 rounded-full font-bold shadow-sm hover:bg-gray-50 transition flex items-center space-x-2 min-w-[180px] justify-between">
+    <div class="relative">
+        <button @click="showDateDropdown = !showDateDropdown; showNameDropdown = false" class="group px-6 py-2 {{ request('sort_by') === 'date' ? 'bg-[#7e9a3e] text-white' : 'bg-white border-2 border-[#7e9a3e] text-gray-700' }} rounded-full font-bold shadow-sm hover:bg-[#5a6944] hover:text-white transition flex items-center space-x-2 min-w-[180px] justify-between">
             <span>Tanggal Sewa</span>
-            <svg class="w-4 h-4 text-[#718355]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-4 h-4 {{ request('sort_by') === 'date' ? 'text-white' : 'text-[#7e9a3e]' }} group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7"></path>
             </svg>
         </button>
+        <div x-show="showDateDropdown" @click.away="showDateDropdown = false" class="absolute top-full left-0 mt-2 w-40 bg-white rounded-xl shadow-xl border border-gray-200 p-2 z-10">
+            <a href="{{ route('admin.orders', ['sort_by' => 'date', 'sort_order' => 'asc']) }}" @click="showDateDropdown = false" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[#1f2b03] hover:text-white rounded-lg {{ request('sort_by') === 'date' && request('sort_order') === 'asc' ? 'bg-[#7e9a3e] text-white' : '' }}">Terdekat</a>
+            <a href="{{ route('admin.orders', ['sort_by' => 'date', 'sort_order' => 'desc']) }}" @click="showDateDropdown = false" class="block px-4 py-2 text-sm text-gray-700 hover:bg-[#1f2b03] hover:text-white rounded-lg {{ request('sort_by') === 'date' && request('sort_order') === 'desc' ? 'bg-[#7e9a3e] text-white' : '' }}">Terjauh</a>
+        </div>
     </div>
 </div>
 
@@ -63,14 +66,14 @@
                     </td>
 
                     <td class="border border-gray-300 px-4 py-4 text-center">
-                        <button @click="showModal = true" class="inline-block bg-[#718355] text-white px-8 py-2 rounded-full text-xs font-bold hover:bg-[#5a6944] transition uppercase tracking-wide cursor-pointer">
+                        <button @click="showModal = true" class="inline-block bg-[#7e9a3e] text-white px-8 py-2 rounded-full text-xs font-bold hover:bg-[#5a6944] transition uppercase tracking-wide cursor-pointer">
                             TINJAU
                         </button>
 
                         <div x-show="showModal" style="display: none;">
                             <div class="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overflow-x-hidden bg-black/60 backdrop-blur-sm p-4 md:p-0">
 
-                                <div @click.away="showModal = false" class="relative w-full max-w-5xl bg-white rounded-3xl shadow-2xl p-8 transform transition-all">
+                                <div @click.away="showModal = false" class="relative w-full max-w-5xl bg-white rounded-3xl shadow-2xl p-8 transform transition-all max-h-[90vh] overflow-y-auto">
 
                                     <div class="text-center mb-8 relative">
                                         <h2 class="text-3xl font-extrabold text-black" style="font-family: serif;">Tinjau & Validasi</h2>
@@ -91,7 +94,7 @@
 
                                                 <div class="mb-2">
                                                     @if($item->product->stock_available >= $item->quantity)
-                                                        <span class="text-[#718355] font-bold text-sm">Stok Aman</span>
+                                                        <span class="text-[#7e9a3e] font-bold text-sm">Stok Aman</span>
                                                     @else
                                                         <span class="text-red-500 font-bold text-sm">⚠ Stok Kurang (Sisa {{ $item->product->stock_available }})</span>
                                                     @endif

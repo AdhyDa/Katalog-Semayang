@@ -12,7 +12,7 @@
             </h1>
         </div>
         <div>
-            <button @click="openModal('create')" class="inline-flex items-center px-6 py-3 bg-[#718355] hover:bg-[#5a6944] text-white font-bold rounded-full transition shadow-sm">
+            <button @click="openModal('create')" class="inline-flex items-center px-6 py-3 bg-[#7e9a3e] hover:bg-[#5a6944] text-white font-bold rounded-full transition shadow-sm">
                 <span class="mr-2 text-xl">+</span> Tambah Baju Baru
             </button>
         </div>
@@ -26,10 +26,10 @@
                     <div class="flex-grow">
                         <input type="text" name="search" value="{{ request('search') }}"
                             placeholder="Ketik nama baju..."
-                            class="w-full px-4 py-2 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-[#718355] text-gray-700">
+                            class="w-full px-4 py-2 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-[#7e9a3e] text-gray-700">
                     </div>
                     <div class="w-full md:w-1/4 relative">
-                        <select name="category" onchange="this.form.submit()" class="w-full appearance-none px-4 py-2 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-[#718355] text-gray-500 bg-white cursor-pointer">
+                        <select name="category" onchange="this.form.submit()" class="w-full appearance-none px-4 py-2 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-[#7e9a3e] text-gray-500 bg-white cursor-pointer">
                             <option value="">Kategori</option>
                             @foreach($categories as $category)
                                 <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
@@ -40,7 +40,7 @@
                         </div>
                     </div>
                     <div class="w-full md:w-1/4 relative">
-                        <select name="status" onchange="this.form.submit()" class="w-full appearance-none px-4 py-2 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-[#718355] text-gray-500 bg-white cursor-pointer">
+                        <select name="status" onchange="this.form.submit()" class="w-full appearance-none px-4 py-2 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-[#7e9a3e] text-gray-500 bg-white cursor-pointer">
                             <option value="">Status Stok</option>
                             <option value="tersedia" {{ request('status') == 'tersedia' ? 'selected' : '' }}>Tersedia</option>
                             <option value="sisa" {{ request('status') == 'sisa' ? 'selected' : '' }}>Sisa Stok</option>
@@ -72,7 +72,7 @@
                             <h3 class="text-2xl font-bold font-serif text-black leading-tight">{{ $product->name }}</h3>
                             <div class="flex items-center space-x-2 text-sm font-bold">
                                 @if($product->stock_total > 2)
-                                    <span class="w-3 h-3 rounded-full bg-[#718355]"></span><span class="text-[#718355]">Tersedia {{ $product->stock_total }}</span>
+                                    <span class="w-3 h-3 rounded-full bg-[#7e9a3e]"></span><span class="text-[#7e9a3e]">Tersedia {{ $product->stock_total }}</span>
                                 @elseif($product->stock_total > 0 && $product->stock_total <= 2)
                                     <span class="w-3 h-3 rounded-full bg-red-500"></span><span class="text-red-500">Sisa {{ $product->stock_total }}</span>
                                 @else
@@ -93,7 +93,7 @@
                             <button type="submit" class="w-full bg-white border border-gray-400 text-gray-500 hover:text-red-500 hover:border-red-500 font-medium py-2.5 rounded-full transition text-sm">Hapus</button>
                         </form>
 
-                        <button @click="openModal('edit', {{ $product }})" class="w-full bg-[#718355] hover:bg-[#5a6944] text-white font-medium py-2.5 rounded-full transition text-sm">
+                        <button @click="openModal('edit', {{ $product }})" class="w-full bg-[#7e9a3e] hover:bg-[#5a6944] text-white font-medium py-2.5 rounded-full transition text-sm">
                             Edit
                         </button>
                     </div>
@@ -132,7 +132,7 @@
                             <img x-show="imagePreview" :src="imagePreview" class="absolute inset-0 w-full h-full object-cover">
 
                             <div x-show="!imagePreview" class="text-center p-4">
-                                <svg class="w-12 h-12 mx-auto mb-2 text-gray-400 group-hover:text-[#718355]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+                                <svg class="w-12 h-12 mx-auto mb-2 text-gray-400 group-hover:text-[#7e9a3e]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
                                 <span class="text-sm font-bold">Upload an Image</span>
                                 <span class="block text-xs">(jpg, png, jpeg)</span>
                             </div>
@@ -144,19 +144,19 @@
                             <div>
                                 <label class="block text-gray-800 font-bold mb-2 ml-1">Nama Produk</label>
                                 <input type="text" name="name" x-model="formData.name" required placeholder="Contoh: Baju Adat Pria (Hitam)"
-                                    class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-[#718355] focus:ring-1 focus:ring-[#718355]">
+                                    class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-[#7e9a3e] focus:ring-1 focus:ring-[#7e9a3e]">
                             </div>
 
                             <div>
                                 <label class="block text-gray-800 font-bold mb-2 ml-1">Harga Sewa (per 3 Hari)</label>
                                 <input type="number" name="price_per_3days" x-model="formData.price_per_3days" required placeholder="Contoh: 55000"
-                                    class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-[#718355] focus:ring-1 focus:ring-[#718355]">
+                                    class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-[#7e9a3e] focus:ring-1 focus:ring-[#7e9a3e]">
                             </div>
 
                             <div>
                                 <label class="block text-gray-800 font-bold mb-2 ml-1">Kategori</label>
                                 <div class="relative">
-                                    <select name="category_id" x-model="formData.category_id" required class="w-full appearance-none px-4 py-3 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-[#718355] bg-white">
+                                    <select name="category_id" x-model="formData.category_id" required class="w-full appearance-none px-4 py-3 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-[#7e9a3e] bg-white">
                                         <option value="">Pilih Kategori</option>
                                         @foreach($categories as $category)
                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -171,7 +171,7 @@
                             <div>
                                 <label class="block text-gray-800 font-bold mb-2 ml-1">Jumlah Stok</label>
                                 <input type="number" name="stock_total" x-model="formData.stock_total" required placeholder="Contoh: 5"
-                                    class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-[#718355] focus:ring-1 focus:ring-[#718355]">
+                                    class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-[#7e9a3e] focus:ring-1 focus:ring-[#7e9a3e]">
                             </div>
                         </div>
 
@@ -180,7 +180,7 @@
                             <div>
                                 <label class="block text-gray-800 font-bold mb-2 ml-1">Deskripsi, Ukuran & Kelengkapan</label>
                                 <textarea name="description" x-model="formData.description" rows="4" required placeholder="Tuliskan deskripsi baju, perkiraan ukuran (S/M/L), dan daftar aksesoris yang termasuk dalam paket."
-                                    class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-[#718355] focus:ring-1 focus:ring-[#718355]"></textarea>
+                                    class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:outline-none focus:border-[#7e9a3e] focus:ring-1 focus:ring-[#7e9a3e]"></textarea>
                             </div>
                         </div>
                     </div>
@@ -190,7 +190,7 @@
                     <button type="button" @click="closeModal()" class="flex-1 bg-gray-500 hover:bg-gray-600 text-white font-bold py-4 rounded-xl transition">
                         Batal
                     </button>
-                    <button type="submit" class="flex-1 bg-[#718355] hover:bg-[#5a6944] text-white font-bold py-4 rounded-xl transition shadow-lg">
+                    <button type="submit" class="flex-1 bg-[#7e9a3e] hover:bg-[#5a6944] text-white font-bold py-4 rounded-xl transition shadow-lg">
                         Simpan Produk
                     </button>
                 </div>

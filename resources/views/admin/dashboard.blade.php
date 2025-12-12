@@ -5,14 +5,14 @@
 @section('content')
 <div class="mb-12 flex flex-col md:flex-row items-start md:items-center justify-between">
     <div>
-        <p class="text-[#718355] text-lg font-medium mb-2">Wellcome back, Admin!</p>
+        <p class="text-[#7e9a3e] text-lg font-medium mb-2">Wellcome back, Admin!</p>
         <h1 class="text-5xl font-extrabold text-black tracking-tight" style="font-family: 'Inter', sans-serif;">Dashboard</h1>
     </div>
 
     <div class="flex items-center space-x-6 mt-6 md:mt-0">
 
         <div class="flex items-center space-x-3">
-            <div class="w-12 h-12 rounded-full bg-gray-200 border-2 border-[#718355] flex items-center justify-center overflow-hidden">
+            <div class="w-12 h-12 rounded-full bg-gray-200 border-2 border-[#7e9a3e] flex items-center justify-center overflow-hidden">
                 <svg class="w-8 h-8 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
                 </svg>

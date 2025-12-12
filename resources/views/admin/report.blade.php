@@ -3,52 +3,39 @@
 @section('title', 'Laporan Keuangan & Performa')
 
 @section('content')
-    {{-- Judul Halaman --}}
     <h2 class="text-3xl font-extrabold mb-8 text-black" style="font-family: 'Merriweather', serif;">
         Laporan Keuangan & Performa
     </h2>
 
-    {{-- SECTION 1: Filter Tanggal --}}
-    {{-- Kita tetap pertahankan container flex ini agar struktur margin/gap tetap sama --}}
     <div class="flex flex-col md:flex-row justify-between items-end mb-10 gap-4">
-
-        {{-- Form Filter --}}
         <form action="" method="GET" class="w-full md:w-auto">
             <label class="block text-gray-600 font-semibold mb-2">Rentang Tanggal</label>
             <div class="flex flex-wrap items-center gap-3">
-                {{-- Input Mulai --}}
                 <div class="relative">
-                    <input type="date" name="start_date" class="pl-4 pr-10 py-2 border-2 border-[#718355] rounded-lg outline-none focus:ring-2 focus:ring-[#718355]/50 text-gray-700 font-medium">
+                    <input type="date" name="start_date" class="pl-4 pr-10 py-2 border-2 border-[#7e9a3e] rounded-lg outline-none focus:ring-2 focus:ring-[#7e9a3e]/50 text-gray-700 font-medium">
                 </div>
 
                 <span class="text-gray-400 font-bold">-</span>
 
-                {{-- Input Selesai --}}
                 <div class="relative">
-                    <input type="date" name="end_date" class="pl-4 pr-10 py-2 border-2 border-[#718355] rounded-lg outline-none focus:ring-2 focus:ring-[#718355]/50 text-gray-700 font-medium">
+                    <input type="date" name="end_date" class="pl-4 pr-10 py-2 border-2 border-[#7e9a3e] rounded-lg outline-none focus:ring-2 focus:ring-[#7e9a3e]/50 text-gray-700 font-medium">
                 </div>
 
-                {{-- Tombol Clear (X) --}}
                 <a href="{{ route('admin.reports') }}" class="p-2 border-2 border-black rounded-lg hover:bg-gray-100 transition flex items-center justify-center">
                     <svg class="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                 </a>
             </div>
 
-            <button type="submit" class="mt-4 bg-[#718355] text-white px-6 py-2 rounded-lg font-bold hover:bg-[#5a6b42] transition shadow-md">
+            <button type="submit" class="mt-4 bg-[#7e9a3e] text-white px-6 py-2 rounded-lg font-bold hover:bg-[#5a6b42] transition shadow-md">
                 Tampilkan Data
             </button>
         </form>
-
-        {{-- BAGIAN CETAK PDF SUDAH DIHILANGKAN DI SINI --}}
     </div>
 
-    {{-- SECTION 2: Statistik Cards (3 Box) --}}
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
 
-        {{-- Card 1: Omzet (Hijau) --}}
         <div class="bg-white border-2 border-black rounded-2xl p-6 flex items-center gap-5 shadow-sm">
-            <div class="w-16 h-16 rounded-full bg-[#718355] flex items-center justify-center flex-shrink-0 text-white">
-                {{-- Icon Chart --}}
+            <div class="w-16 h-16 rounded-full bg-[#7e9a3e] flex items-center justify-center flex-shrink-0 text-white">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
             </div>
             <div>
@@ -57,10 +44,8 @@
             </div>
         </div>
 
-        {{-- Card 2: Transaksi Sukses (Biru) --}}
         <div class="bg-white border-2 border-black rounded-2xl p-6 flex items-center gap-5 shadow-sm">
             <div class="w-16 h-16 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0 text-white">
-                {{-- Icon Arrows --}}
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
             </div>
             <div>
@@ -69,10 +54,8 @@
             </div>
         </div>
 
-        {{-- Card 3: Denda (Merah) --}}
         <div class="bg-white border-2 border-black rounded-2xl p-6 flex items-center gap-5 shadow-sm">
             <div class="w-16 h-16 rounded-full bg-red-500 flex items-center justify-center flex-shrink-0 text-white">
-                {{-- Icon Coins/Warning --}}
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
             </div>
             <div>
@@ -82,10 +65,8 @@
         </div>
     </div>
 
-    {{-- SECTION 3: Tabel Kostum (Terlaris & Jarang) --}}
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
 
-        {{-- Tabel Kiri: Terlaris --}}
         <div>
             <h3 class="text-lg font-bold mb-4 text-black">Kostum Terlaris</h3>
             <div class="overflow-hidden border border-gray-300 rounded-lg">
@@ -113,7 +94,6 @@
             </div>
         </div>
 
-        {{-- Tabel Kanan: Jarang Disewa --}}
         <div>
             <h3 class="text-lg font-bold mb-4 text-black">Kostum Jarang Disewa</h3>
             <div class="overflow-hidden border border-gray-300 rounded-lg">
@@ -142,10 +122,8 @@
         </div>
     </div>
 
-    {{-- SECTION 4: Detail Pemasukan (Tabel Besar) --}}
     <div>
         <h3 class="text-xl font-bold mb-4 text-black">Detail Pemasukan</h3>
-
         <div class="overflow-x-auto border border-gray-300 rounded-lg">
             <table class="w-full text-sm text-left border-collapse">
                 <thead class="bg-gray-50 text-gray-700">
@@ -159,7 +137,6 @@
                     </tr>
                 </thead>
                 <tbody class="bg-white">
-                    {{-- Row 1 --}}
                     <tr>
                         <td class="py-3 px-4 border border-gray-300 text-center font-bold">1</td>
                         <td class="py-3 px-4 border border-gray-300 text-center">
@@ -172,16 +149,14 @@
                             <span class="text-xs text-gray-500">+ 2 lainnya</span>
                         </td>
                         <td class="py-3 px-4 border border-gray-300 text-center">
-                            {{-- Placeholder Logo QRIS --}}
                             <div class="flex justify-center">
                                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/QRIS_logo.svg/1200px-QRIS_logo.svg.png"
-                                     alt="QRIS" class="h-6 object-contain">
+                                    alt="QRIS" class="h-6 object-contain">
                             </div>
                         </td>
                         <td class="py-3 px-4 border border-gray-300 text-center font-bold">Rp 165.000</td>
                     </tr>
 
-                    {{-- Row 2 --}}
                     <tr>
                         <td class="py-3 px-4 border border-gray-300 text-center font-bold">2</td>
                         <td class="py-3 px-4 border border-gray-300 text-center">
@@ -193,9 +168,9 @@
                             Sewa Baju Adat Wanita (Merah)
                         </td>
                         <td class="py-3 px-4 border border-gray-300 text-center">
-                             <div class="flex justify-center">
+                            <div class="flex justify-center">
                                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/QRIS_logo.svg/1200px-QRIS_logo.svg.png"
-                                     alt="QRIS" class="h-6 object-contain">
+                                    alt="QRIS" class="h-6 object-contain">
                             </div>
                         </td>
                         <td class="py-3 px-4 border border-gray-300 text-center font-bold">Rp 55.000</td>
@@ -204,5 +179,4 @@
             </table>
         </div>
     </div>
-
 @endsection

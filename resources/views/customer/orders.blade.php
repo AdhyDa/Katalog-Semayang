@@ -84,7 +84,7 @@
 
                 {{-- TOMBOL ACTION DI LUAR CARD (Biar lebar penuh seperti desain) --}}
                 <a href="{{ route('customer.order.detail', $order->id) }}"
-                    class="block w-full py-3 -mt-6 rounded-full border-2 border-[#718355] text-[#718355] text-center font-bold hover:bg-[#718355] hover:text-white transition-colors duration-200">
+                    class="block w-full py-3 -mt-6 rounded-full border-2 border-[#7e9a3e] text-[#7e9a3e] text-center font-bold hover:bg-[#7e9a3e] hover:text-white transition-colors duration-200">
                     Lihat Detail
                 </a>
 
@@ -104,7 +104,7 @@
             </div>
             <h3 class="text-xl font-bold text-black mb-2">Belum ada pesanan</h3>
             <p class="text-gray-500 mb-6">Anda belum pernah menyewa baju adat.</p>
-            <a href="{{ route('katalog') }}" class="px-8 py-3 bg-[#718355] text-white rounded-xl font-bold hover:bg-[#5a6b42] transition shadow-lg" style="margin: unset;">
+            <a href="{{ route('katalog') }}" class="px-8 py-3 bg-[#7e9a3e] text-white rounded-xl font-bold hover:bg-[#5a6b42] transition shadow-lg" style="margin: unset;">
                 Lihat Katalog
             </a>
         </div>

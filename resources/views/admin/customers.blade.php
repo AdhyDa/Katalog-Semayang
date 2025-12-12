@@ -13,10 +13,10 @@
         <div class="relative w-full md:w-96">
             <input type="text"
                     placeholder="Cari Nama, Email, atau No Telp"
-                    class="w-full pl-5 pr-12 py-2 border-2 border-[#718355] rounded-full outline-none focus:ring-2 focus:ring-[#718355]/50 text-gray-700 placeholder-gray-400 font-medium transition-all">
+                    class="w-full pl-5 pr-12 py-2 border-2 border-[#7e9a3e] rounded-full outline-none focus:ring-2 focus:ring-[#7e9a3e]/50 text-gray-700 placeholder-gray-400 font-medium transition-all">
 
             {{-- Icon Search (Posisi Absolute di Kanan) --}}
-            <div class="absolute right-4 top-1/2 transform -translate-y-1/2 text-[#718355]">
+            <div class="absolute right-4 top-1/2 transform -translate-y-1/2 text-[#7e9a3e]">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                     <circle cx="11" cy="11" r="8"></circle>
                     <path d="M21 21l-4.35-4.35"></path>
