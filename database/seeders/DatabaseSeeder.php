@@ -325,31 +325,31 @@ class DatabaseSeeder extends Seeder
         $this->command->info('Email: adhyaksa209@gmail.com');
         $this->command->info('Password: akuAdmin');
 
-            PaymentMethod::create([
-                'code' => 'bri',
-                'name' => 'Bank BRI',
-                'type' => 'manual',
-                'account_number' => '1234-5678-9012-3456',
-                'account_name' => 'AMKT SEMAYANG',
-                'logo_image' => 'images/payment/bri.png',
-                'is_active' => true,
-            ]);
+        PaymentMethod::create([
+            'code' => 'bri',
+            'name' => 'Bank BRI',
+            'type' => 'manual',
+            'account_number' => '1234-5678-9012-3456',
+            'account_name' => 'AMKT SEMAYANG',
+            'logo_image' => 'images/payment/bri.png',
+            'is_active' => true,
+        ]);
 
-            PaymentMethod::create([
-                'code' => 'bca',
-                'name' => 'Bank BCA',
-                'type' => 'qr',
-                'qr_image' => 'images/payment/qr-bca.png',
-                'logo_image' => 'images/payment/bca.png',
-                'is_active' => true,
-            ]);
+        PaymentMethod::create([
+            'code' => 'bca',
+            'name' => 'Bank BCA',
+            'type' => 'qr',
+            'qr_image' => 'images/payment/qr-bca.png',
+            'logo_image' => 'images/payment/bca.png',
+            'is_active' => true,
+        ]);
 
-            PaymentMethod::create([
-                'code' => 'cod',
-                'name' => 'Bayar di Tempat (COD)',
-                'type' => 'cash',
-                'logo_image' => 'images/payment/cod.png',
-                'is_active' => true,
-            ]);
+        PaymentMethod::create([
+            'code' => 'cod',
+            'name' => 'Bayar di Tempat (COD)',
+            'type' => 'cash',
+            'logo_image' => 'images/payment/cod.png',
+            'is_active' => true,
+        ]);
     }
 }

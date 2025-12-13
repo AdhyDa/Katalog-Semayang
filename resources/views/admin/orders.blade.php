@@ -62,7 +62,11 @@
                     </td>
                     <td class="border border-gray-300 px-4 py-4 text-center text-sm font-bold text-gray-800">{{ $order->orderItems->sum('quantity') }} Paket</td>
                     <td class="border border-gray-300 px-4 py-4 text-center text-sm font-bold text-gray-800">
-                        Rp {{ number_format($order->total, 0, ',', '.') }}
+                        @if($order->user_type === 'organisasi')
+                            Rp 0
+                        @else
+                            Rp {{ number_format($order->total, 0, ',', '.') }}
+                        @endif
                     </td>
 
                     <td class="border border-gray-300 px-4 py-4 text-center">
@@ -134,21 +138,32 @@
                                                 <div>
                                                     <label class="block text-gray-700 font-bold mb-1 ml-1">Jaminan</label>
                                                     @if($order->id_card_photo)
-                                                    <a href="{{ Storage::url($order->id_card_photo) }}" target="_blank" class="block overflow-hidden rounded-xl border-2 border-gray-300 hover:border-black transition">
-                                                        <img src="{{ Storage::url($order->id_card_photo) }}" class="w-full h-24 object-cover">
+                                                    <a href="{{ asset('storage/' . $order->id_card_photo) }}" target="_blank">
+                                                        <img src="{{ asset('storage/' . $order->id_card_photo) }}" class="h-32 object-contain mx-auto" alt="Jaminan">
                                                     </a>
                                                     @else
                                                     <div class="h-24 bg-gray-100 rounded-xl border-2 border-gray-300 flex items-center justify-center text-gray-400 text-xs text-center">Tidak ada</div>
                                                     @endif
                                                 </div>
                                                 <div>
-                                                    <label class="block text-gray-700 font-bold mb-1 ml-1">Bukti Pembayaran</label>
-                                                    @if($order->payment_proof)
-                                                    <a href="{{ Storage::url($order->payment_proof) }}" target="_blank" class="block overflow-hidden rounded-xl border-2 border-gray-300 hover:border-black transition">
-                                                        <img src="{{ Storage::url($order->payment_proof) }}" class="w-full h-24 object-cover">
-                                                    </a>
+                                                    @if($order->user_type === 'organisasi')
+                                                        <label class="block text-gray-700 font-bold mb-1 ml-1">Surat Peminjaman</label>
+                                                        @if($order->surat_peminjaman)
+                                                        <a href="{{ asset('storage/' . $order->surat_peminjaman) }}" target="_blank">
+                                                            <img src="{{ asset('storage/' . $order->surat_peminjaman) }}" class="h-32 object-contain mx-auto" alt="Surat Peminjaman">
+                                                        </a>
+                                                        @else
+                                                        <div class="h-24 bg-gray-100 rounded-xl border-2 border-gray-300 flex items-center justify-center text-gray-400 text-xs text-center">Tidak ada</div>
+                                                        @endif
                                                     @else
-                                                    <div class="h-24 bg-gray-100 rounded-xl border-2 border-gray-300 flex items-center justify-center text-gray-400 text-xs text-center">Tidak ada</div>
+                                                        <label class="block text-gray-700 font-bold mb-1 ml-1">Bukti Pembayaran</label>
+                                                        @if($order->payment_proof)
+                                                        <a href="{{ asset('storage/' . $order->payment_proof) }}" target="_blank">
+                                                            <img src="{{ asset('storage/' . $order->payment_proof) }}" class="h-32 object-contain mx-auto" alt="Bukti Transfer">
+                                                        </a>
+                                                        @else
+                                                        <div class="h-24 bg-gray-100 rounded-xl border-2 border-gray-300 flex items-center justify-center text-gray-400 text-xs text-center">Tidak ada</div>
+                                                        @endif
                                                     @endif
                                                 </div>
                                             </div>
@@ -156,10 +171,12 @@
                                             <div>
                                                 <label class="block text-gray-700 font-bold mb-1 ml-1">Metode Pembayaran</label>
                                                 <div class="w-full border-2 border-black rounded-xl px-4 py-3 font-medium text-gray-900">
-                                                    @if($order->payment_type === 'cod')
+                                                    @if($order->user_type === 'organisasi')
+                                                        -
+                                                    @elseif($order->payment_type === 'cod')
                                                         COD
                                                     @else
-                                                        {{ ucfirst($order->payment_type ?? 'Transfer') }}
+                                                        {{ strtoupper($order->payment_type ?? 'Transfer') }}
                                                     @endif
                                                 </div>
                                             </div>

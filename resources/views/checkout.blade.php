@@ -173,15 +173,19 @@
                         <p>Silakan pilih metode pembayaran Anda</p>
 
                         <div class="payment-methods">
-                            @foreach($paymentMethods as $method)
-                                <label class="payment-method">
-                                    <input type="radio"
-                                        name="metode_pembayaran"
-                                        value="{{ $method->code }}"
-                                        onchange="showPaymentInfo('{{ $method->code }}')"
-                                        required>
-                                    <img src="{{ asset($method->logo_image) }}" alt="{{ $method->name }}">
-                                </label>
+                            @foreach(array_chunk($paymentMethods->toArray(), 3) as $row)
+                                <div class="payment-row">
+                                    @foreach($row as $method)
+                                        <label class="payment-method">
+                                            <input type="radio"
+                                                name="metode_pembayaran"
+                                                value="{{ $method['code'] }}"
+                                                onchange="showPaymentInfo('{{ $method['code'] }}')"
+                                                required>
+                                            <img src="{{ asset($method['logo_image']) }}" alt="{{ $method['name'] }}">
+                                        </label>
+                                    @endforeach
+                                </div>
                             @endforeach
                         </div>
 
@@ -598,8 +602,6 @@
         if(pelunasanDpNote) pelunasanDpNote.style.display = 'none';
 
         if (nominalOption === 'cod') {
-            // --- LOGIKA COD ---
-            // 1. Sembunyikan Payment Section
             paymentSection.style.display = 'none';
 
             // 2. Matikan required bukti transfer dan radio bank

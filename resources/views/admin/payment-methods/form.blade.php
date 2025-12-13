@@ -37,9 +37,8 @@
                 <div class="md:col-span-2">
                     <label class="block font-bold text-gray-700 mb-2">Tipe Pembayaran</label>
                     <select name="type" class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-[#7e9a3e] focus:outline-none bg-white">
-                        <option value="manual" {{ (old('type', $method->type ?? '') == 'manual') ? 'selected' : '' }}>Transfer Manual (Rekening)</option>
+                        <option value="manual" {{ (old('type', $method->type ?? '') == 'manual') ? 'selected' : '' }}>Transfer (Rekening)</option>
                         <option value="qr" {{ (old('type', $method->type ?? '') == 'qr') ? 'selected' : '' }}>QR Code / E-Wallet</option>
-                        <option value="cash" {{ (old('type', $method->type ?? '') == 'cash') ? 'selected' : '' }}>COD (Bayar di Tempat)</option>
                     </select>
                 </div>
 

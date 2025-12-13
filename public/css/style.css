@@ -3586,8 +3586,14 @@ body {
 /* Payment Methods */
 .payment-methods {
     display: flex;
+    flex-direction: column;
     gap: 15px;
     margin-bottom: 25px;
+}
+
+.payment-row {
+    display: flex;
+    gap: 15px;
 }
 
 .payment-method {
@@ -3603,8 +3609,10 @@ body {
 }
 
 .payment-method img {
-    width: 100%;
-    padding: 15px;
+    width: 150px;
+    height: 100px;
+    object-fit: contain;
+    padding: 10px;
     border: 2px solid #E0E0E0;
     border-radius: 10px;
     background-color: white;

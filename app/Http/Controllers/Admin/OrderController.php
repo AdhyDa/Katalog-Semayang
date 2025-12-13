@@ -11,6 +11,7 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         $query = Rental::query();
+        $query->where('status', 'pending');
 
         if ($request->has('search') && !empty($request->search)) {
             $query->where('nama_lengkap', 'like', '%' . $request->search . '%');
@@ -57,7 +58,17 @@ class OrderController extends Controller
         }
 
         if ($request->has('search') && !empty($request->search)) {
-            $query->where('nama_lengkap', 'like', '%' . $request->search . '%');
+            $searchTerm = $request->search;
+            $query->where(function($q) use ($searchTerm) {
+                $q->where('nama_lengkap', 'like', '%' . $searchTerm . '%');
+
+                // Handle order number search (e.g., "ORD-000001", "000001", or "1")
+                if (preg_match('/^ORD-(\d+)$/', $searchTerm, $matches)) {
+                    $q->orWhere('id', $matches[1]);
+                } elseif (is_numeric($searchTerm)) {
+                    $q->orWhere('id', $searchTerm);
+                }
+            });
         }
 
         $orders = $query->paginate(10);
@@ -71,5 +82,11 @@ class OrderController extends Controller
         $rental->update(['status' => 'completed']);
 
         return redirect()->route('admin.transactions')->with('success', 'Transaction completed successfully.');
+    }
+
+    public function orderDetail($id)
+    {
+        $order = Rental::findOrFail($id);
+        return view('admin.order-detail', compact('order'));
     }
 }

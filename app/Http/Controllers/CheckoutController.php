@@ -52,6 +52,11 @@ class CheckoutController extends Controller
 
             $activePaymentMethods = PaymentMethod::where('is_active', true)->pluck('code')->toArray();
 
+            // Ensure 'cod' is always included in allowed payment methods
+            if (!in_array('cod', $activePaymentMethods)) {
+                $activePaymentMethods[] = 'cod';
+            }
+
             if ($request->user_type === 'umum') {
                 $rules['nama_instansi'] = 'nullable|string|max:255';
 

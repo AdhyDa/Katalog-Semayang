@@ -62,10 +62,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::post('/order/confirm/{id}', [OrderController::class, 'confirm'])->name('admin.order.confirm');
     Route::post('/order/reject/{id}', [OrderController::class, 'reject'])->name('admin.order.reject');
 
-    Route::get('/order-detail/{id}', function ($id) {
-        // Note: This view requires $order data, may need a controller
-        return view('admin.order-detail');
-    })->name('admin.order-detail');
+    Route::get('/order-detail/{id}', [OrderController::class, 'show'])->name('admin.order-detail');
 
     Route::resource('products', \App\Http\Controllers\Admin\ProductController::class)->names([
         'index' => 'admin.products.index',
