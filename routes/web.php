@@ -95,7 +95,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/laporan', [LaporanController::class, 'index'])->name('admin.reports');
 
     Route::get('/ganti-password', [AdminController::class, 'showChangePassword'])->name('password.form');
-    Route::post('/ganti-password', [AdminController::class, 'updatePassword'])->name('password.update');
+    Route::post('/ganti-password', [AdminController::class, 'updatePassword'])->name('admin.password.update');
 });
 
 // Customer Routes
