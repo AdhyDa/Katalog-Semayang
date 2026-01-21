@@ -59,15 +59,15 @@ Sebelum menjalankan proyek ini di lokal, pastikan Anda telah menginstal:
     ```bash
     php artisan serve
 
-📂 Struktur Folder
+## 📂 Struktur Folder
 - app/Models - Definisi struktur data (Baju, Kategori, Transaksi).
 - app/Http/Controllers - Logika bisnis aplikasi.
 - resources/views - Antarmuka pengguna (Layout admin & katalog).
 - database/migrations - Struktur tabel database.
 
-🤝 Kontribusi
+## 🤝 Kontribusi
 Jika Anda ingin berkontribusi pada pengembangan platform ini, silakan lakukan fork pada repositori ini dan kirimkan pull request. Kami sangat menghargai setiap saran dan perbaikan.
 
-📄 Lisensi
+## 📄 Lisensi
 Proyek ini merupakan perangkat lunak sumber terbuka yang dilisensikan di bawah MIT license.
 Dibuat dengan ❤️ oleh Adhyaksa Daudi
